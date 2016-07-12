@@ -155,7 +155,23 @@ public class vp_HitscanBullet : MonoBehaviour
 			}
 
 			// do damage on the target
-			hit.collider.SendMessageUpwards(DamageMethodName, Damage, SendMessageOptions.DontRequireReceiver);
+            if(!hit.collider.CompareTag(Consts.EnemyTag))
+			    hit.collider.SendMessageUpwards(DamageMethodName, Damage, SendMessageOptions.DontRequireReceiver);
+            else
+            {
+                Debug.Log(hit.transform.position + "hit" + hit.point);
+                //todo 1.7为头部判定高度，1.7以上为头
+                if (hit.point.y - hit.transform.position.y < 1.7f)
+                {
+			        hit.collider.SendMessageUpwards(DamageMethodName, 10, SendMessageOptions.DontRequireReceiver);
+                    Debug.Log("normal");
+                }
+                else
+                {
+			        hit.collider.SendMessageUpwards(DamageMethodName, 30, SendMessageOptions.DontRequireReceiver);
+                    Debug.Log("head shot");
+                }
+            }
 
 			// prevent adding decals to objects based on layer
 			if (NoDecalOnTheseLayers.Length > 0)

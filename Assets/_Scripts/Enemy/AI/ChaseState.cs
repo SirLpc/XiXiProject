@@ -7,6 +7,8 @@ public class ChaseState : IEnemyState
 
     private readonly StatePatternEnemy enemy;
 
+    private float lastAttackTime;
+
 
     public ChaseState(StatePatternEnemy statePatternEnemy)
     {
@@ -42,6 +44,10 @@ public class ChaseState : IEnemyState
 
     public void ToAttackState()
     {
+        //if (Time.time - lastAttackTime < enemy.AttackInterval)
+            //return;
+
+        lastAttackTime = Time.time;
         enemy.currentState = enemy.attackState;
     }
 
@@ -63,15 +69,16 @@ public class ChaseState : IEnemyState
 
     private void Chase()
     {
-        if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance) 
+        enemy.meshRendererFlag.material.color = Color.red;
+        enemy.navMeshAgent.destination = enemy.chaseTarget.position;
+
+        enemy.navMeshAgent.Resume();
+
+        if (enemy.navMeshAgent.remainingDistance < enemy.navMeshAgent.stoppingDistance)
         {
             ToAttackState();
             return;
         }
-
-        enemy.meshRendererFlag.material.color = Color.red;
-        enemy.navMeshAgent.destination = enemy.chaseTarget.position;
-        enemy.navMeshAgent.Resume();
 
     }
 

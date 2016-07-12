@@ -189,7 +189,7 @@ public class vp_DamageHandler : MonoBehaviour
 	void OnCollisionEnter(Collision collision)
 	{
 
-		float force = collision.relativeVelocity.sqrMagnitude * 0.1f;
+        float force = collision.relativeVelocity.sqrMagnitude * 0.1f;
 
 		float damage = (force > ImpactDamageThreshold) ? (force * ImpactDamageMultiplier) : 0.0f;
 

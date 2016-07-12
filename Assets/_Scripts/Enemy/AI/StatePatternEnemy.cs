@@ -11,6 +11,9 @@ public class StatePatternEnemy : MonoBehaviour
     public Vector3 offset = new Vector3(0, .5f, 0);
     public MeshRenderer meshRendererFlag;
 
+    public float AttackNum = 0.1f;
+    public float AttackInterval = 3f;
+
 
     [HideInInspector]
     public Transform chaseTarget;
@@ -55,5 +58,10 @@ public class StatePatternEnemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         currentState.OnTriggerEnter(other);
+    }
+
+    public void AttackComplete()
+    {
+        attackState.OnAttackComplete();
     }
 }

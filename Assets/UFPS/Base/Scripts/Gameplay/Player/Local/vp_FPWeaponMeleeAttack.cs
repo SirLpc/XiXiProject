@@ -171,7 +171,6 @@ public class vp_FPWeaponMeleeAttack : vp_Component
 			// check for target impact after a predetermined duration
 			vp_Timer.In(ImpactTime, delegate()
 			{
-
 				// perform a sphere cast ray from center of controller, at height
 				// of camera and along camera angle
 				RaycastHit hit;
