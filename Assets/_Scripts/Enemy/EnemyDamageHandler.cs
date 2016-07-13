@@ -4,11 +4,17 @@ using System.Collections.Generic;
 
 public class EnemyDamageHandler : vp_DamageHandler
 {
-    private StatePatternEnemy enemy;
+    [SerializeField]
+    private float _fadeDownOutSpeed = 3f;
+
+    private StatePatternEnemy _enemy;
+    private Collider[] _colliders;
+
 
     private void Awake()
     {
-        enemy = GetComponent<StatePatternEnemy>();
+        _enemy = GetComponent<StatePatternEnemy>();
+        _colliders = GetComponentsInChildren<Collider>();
     }
 
     /// <summary>
@@ -28,9 +34,12 @@ public class EnemyDamageHandler : vp_DamageHandler
             return;
 
         m_CurrentHealth = Mathf.Min(m_CurrentHealth - damage, MaxHealth);
-        enemy.anim.SetTrigger(Consts.AniTriggerHurt);
 
-        if (m_CurrentHealth <= 0.0f)
+        if (m_CurrentHealth > 0.0f)
+        {
+            _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
+        }
+        else
             vp_Timer.In(UnityEngine.Random.Range(MinDeathDelay, MaxDeathDelay), delegate ()
             {
                 SendMessage("Die");     // picked up by vp_DamageHandlers and vp_Respawners
@@ -44,10 +53,10 @@ public class EnemyDamageHandler : vp_DamageHandler
     }
 
     /// <summary>
-	/// removes the object, plays the death effect and schedules
-	/// a respawn if enabled, otherwise destroys the object
-	/// </summary>
-	public override void Die()
+    /// removes the object, plays the death effect and schedules
+    /// a respawn if enabled, otherwise destroys the object
+    /// </summary>
+    public override void Die()
     {
 
         if (!enabled || !vp_Utility.IsActive(gameObject))
@@ -59,23 +68,45 @@ public class EnemyDamageHandler : vp_DamageHandler
             m_Audio.PlayOneShot(DeathSound);
         }
 
+        EnableAllColliders(false);
+
+        _enemy.anim.SetTrigger(Consts.AniTriggerDie);
+
+        StartCoroutine(CoFadeDownOutAndRecycle());
+    }
+
+    private IEnumerator CoFadeDownOutAndRecycle()
+    {
+        yield return new WaitForSeconds(Consts.AniDieDuration);
+        var timer = 0.0f;
+        while (timer < 5f)
+        {
+            timer += Time.deltaTime;
+            transform.position += Vector3.down * Time.deltaTime;
+            yield return null;
+        }
+
         RemoveBulletHoles();
 
         vp_Utility.Activate(gameObject, false);
+
+        EnableAllColliders(true);
 
         foreach (GameObject o in DeathSpawnObjects)
         {
             if (o != null)
                 vp_Utility.Instantiate(o, transform.position, transform.rotation);
         }
-
     }
 
-    private IEnumerator CoDownOut()
+    private void EnableAllColliders(bool enabled)
     {
-        yield return new WaitForSeconds(0.28f);
+        for (int i = 0; i < _colliders.Length; i++)
+        {
+            _colliders[i].enabled = enabled;
+        }
     }
-         
+
     //测试代码
     private void OnGUI()
     {
