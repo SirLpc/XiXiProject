@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+using System.Runtime.InteropServices;
 
 public class AttackState : IEnemyState
 {
@@ -25,7 +25,7 @@ public class AttackState : IEnemyState
     public void ToChaseState()
     {
         enemy.currentState = enemy.chaseState;
-        enemy.anim.SetBool("isChase", true);
+        enemy.anim.SetBool(Consts.AniIsChase, true);
         lastAttackTime = enemy.AttackInterval;
     }
 
@@ -58,7 +58,8 @@ public class AttackState : IEnemyState
             ToChaseState();
             return;
         }
-        enemy.anim.SetTrigger("triggerAttack");
+        var ran = Random.Range(0, 3);
+        enemy.anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
 
     }
 
@@ -84,6 +85,6 @@ public class AttackState : IEnemyState
         PlayerController.Instance.DamangeHandler.Damage(enemy.AttackNum);
 
         //在这里变成非追捕状态，是为了防止攻击之后在间隔中变成idel状态，又自动从idel变成了追捕
-        enemy.anim.SetBool("isChase", false);
+        enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 }

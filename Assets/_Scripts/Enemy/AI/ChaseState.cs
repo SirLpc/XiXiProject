@@ -34,7 +34,7 @@ public class ChaseState : IEnemyState
     public void ToAlertState()
     {
         enemy.currentState = enemy.alertState;
-        enemy.anim.SetBool("isChase", false);
+        enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 
     public void ToChaseState()

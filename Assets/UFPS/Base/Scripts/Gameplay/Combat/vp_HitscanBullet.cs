@@ -94,7 +94,6 @@ public class vp_HitscanBullet : MonoBehaviour
 
 		Ray ray = new Ray(m_Transform.position, transform.forward);
 		RaycastHit hit;
-
 		// raycast against all big, solid objects except the player itself
 		if (Physics.Raycast(ray, out hit, Range, (IgnoreLocalPlayer ? vp_Layer.Mask.BulletBlockers : vp_Layer.Mask.IgnoreWalkThru)))
 		{
@@ -160,7 +159,7 @@ public class vp_HitscanBullet : MonoBehaviour
             else
             {
                 Debug.Log(hit.transform.position + "hit" + hit.point);
-                //todo 1.7为头部判定高度，1.7以上为头
+                //todo 1.7为头部判定高度，1.7以上为头    zzzzzzzzzzzzz的标记
                 if (hit.point.y - hit.transform.position.y < 1.7f)
                 {
 			        hit.collider.SendMessageUpwards(DamageMethodName, 10, SendMessageOptions.DontRequireReceiver);
