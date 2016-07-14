@@ -9,6 +9,8 @@ public class AttackState : IEnemyState
 
     private float lastAttackTime = 0;
 
+    public float LastAttackTime { get { return lastAttackTime; } }
+
     public AttackState(StatePatternEnemy statePatternEnemy)
     {
         enemy = statePatternEnemy;
@@ -59,6 +61,12 @@ public class AttackState : IEnemyState
             ToChaseState();
             return;
         }
+
+        if (enemy.IsPlayingHurt())
+        {
+            return;
+        }
+
         var ran = Random.Range(0, 3);
         enemy.anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
         isAttacking = true;

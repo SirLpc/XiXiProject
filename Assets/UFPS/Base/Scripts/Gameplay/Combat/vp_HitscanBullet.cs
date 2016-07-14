@@ -163,12 +163,10 @@ public class vp_HitscanBullet : MonoBehaviour
                 if (hit.point.y - hit.transform.position.y < 1.7f)
                 {
 			        hit.collider.SendMessageUpwards(DamageMethodName, 10, SendMessageOptions.DontRequireReceiver);
-                    Debug.Log("normal");
                 }
                 else
                 {
 			        hit.collider.SendMessageUpwards(DamageMethodName, 30, SendMessageOptions.DontRequireReceiver);
-                    Debug.Log("head shot");
                 }
             }
 

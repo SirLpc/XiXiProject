@@ -33,6 +33,8 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
+    private float lastHurtPlayTime;
+
     private void Awake()
     {
         chaseState = new ChaseState(this);
@@ -65,21 +67,44 @@ public class StatePatternEnemy : MonoBehaviour
 
     public bool CanPlayHurtAnim()
     {
-        var curAniState = anim.GetCurrentAnimatorStateInfo(1);
-        if (curAniState.IsName("UpperLayer.hurt"))
+        if (Time.time - lastHurtPlayTime < 0.5f)
             return false;
 
-        if (currentState == patrolState)
-            return true;
-        if (currentState == chaseState)
-            return true;
-        if (currentState == alertState)
-            return true;
+        if (IsPlayingHurt())
+            return false;
+
         if (currentState == attackState)
         {
-            //anim.GetCurrentAnimatorStateInfo().
+            if (Time.time - lastHurtPlayTime < AttackInterval)
+                return false;
+
+            var cur = anim.GetCurrentAnimatorStateInfo(0);
+            if (cur.IsName("BaseLayer.attack1") || cur.IsName("BaseLayer.attack2"))
+                return false;
+
+            //var attackT = .7f;
+            //var hurtT = .7f;
+            //if(Time.time < attackState.LastAttackTime + attackT || Time.time > attackState.LastAttackTime + attackT + AttackInterval - hurtT)
+            //{
+            //    return false;
+            //}
         }
+
+        lastHurtPlayTime = Time.time;
+
+        //if (currentState == patrolState)
+        //    return true;
+        //if (currentState == chaseState)
+        //    return true;
+        //if (currentState == alertState)
+        //    return true;
         return true;
+    }
+
+    public bool IsPlayingHurt()
+    {
+        var curAniState = anim.GetCurrentAnimatorStateInfo(1);
+        return curAniState.IsName("UpperLayer.hurt");
     }
 
     public void AttackComplete()
