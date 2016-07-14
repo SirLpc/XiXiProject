@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 public class AttackState : IEnemyState
 {
     private readonly StatePatternEnemy enemy;
+    private bool isAttacking;
 
     private float lastAttackTime = 0;
 
@@ -60,7 +61,7 @@ public class AttackState : IEnemyState
         }
         var ran = Random.Range(0, 3);
         enemy.anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
-
+        isAttacking = true;
     }
 
     private void Look()
@@ -75,6 +76,8 @@ public class AttackState : IEnemyState
 
     public void OnAttackComplete()
     {
+        isAttacking = false;
+
         if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
         {
             ToChaseState();

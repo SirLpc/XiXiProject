@@ -6,6 +6,8 @@ public class EnemyDamageHandler : vp_DamageHandler
 {
     [SerializeField]
     private float _fadeDownOutSpeed = 3f;
+    [SerializeField]
+    private float _lieOnGroundTime = 2f;
 
     private StatePatternEnemy _enemy;
     private Collider[] _colliders;
@@ -37,7 +39,7 @@ public class EnemyDamageHandler : vp_DamageHandler
 
         if (m_CurrentHealth > 0.0f)
         {
-            _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
+            //_enemy.anim.SetTrigger(Consts.AniTriggerHurt);
         }
         else
             vp_Timer.In(UnityEngine.Random.Range(MinDeathDelay, MaxDeathDelay), delegate ()
@@ -70,6 +72,9 @@ public class EnemyDamageHandler : vp_DamageHandler
 
         EnableAllColliders(false);
 
+        _enemy.IsAlive = false;
+        _enemy.navMeshAgent.Stop();
+        _enemy.navMeshAgent.enabled = false;
         _enemy.anim.SetTrigger(Consts.AniTriggerDie);
 
         StartCoroutine(CoFadeDownOutAndRecycle());
@@ -78,12 +83,18 @@ public class EnemyDamageHandler : vp_DamageHandler
     private IEnumerator CoFadeDownOutAndRecycle()
     {
         yield return new WaitForSeconds(Consts.AniDieDuration);
+        _enemy.anim.enabled = false;
+        _enemy.enabled = false;
+
+        yield return  new WaitForSeconds(_lieOnGroundTime);
+
         var timer = 0.0f;
         while (timer < 5f)
         {
-            timer += Time.deltaTime;
-            transform.position += Vector3.down * Time.deltaTime;
             yield return null;
+            timer += Time.deltaTime;
+            transform.localPosition += Vector3.down * Time.deltaTime * _fadeDownOutSpeed;
+            Debug.Log(transform.localPosition);
         }
 
         RemoveBulletHoles();

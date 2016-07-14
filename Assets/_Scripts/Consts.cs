@@ -11,7 +11,7 @@ public class Consts
     public const string AniTriggerHurt = "triggerHurt";
     public const string AniTriggerDie = "triggerDie";
 
-    public const float AniDieDuration = 0.27f + 0.1f;
+    public const int AniDieDuration = 2;
 
 
 }
