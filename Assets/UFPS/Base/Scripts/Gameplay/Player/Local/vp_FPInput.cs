@@ -193,6 +193,10 @@ public class vp_FPInput : MonoBehaviour
 	/// </summary>
 	protected virtual void InputZoom()
 	{
+		if (vp_Input.GetButton("Zoom"))
+            PlayerController.Instance.TryDefense();
+
+	    return;
 
 		if (vp_Input.GetButton("Zoom"))
 			Player.Zoom.TryStart();

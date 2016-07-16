@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 public class AttackState : IEnemyState
 {
     private readonly StatePatternEnemy enemy;
-    private bool isAttacking;
 
     private float lastAttackTime = 0;
 
@@ -43,6 +42,8 @@ public class AttackState : IEnemyState
 
     public void UpdateState()
     {
+        if (enemy.IsInDefenseHurt)
+            return;
         Look();
         Attack();
     }
@@ -69,7 +70,6 @@ public class AttackState : IEnemyState
 
         var ran = Random.Range(0, 3);
         enemy.anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
-        isAttacking = true;
     }
 
     private void Look()
@@ -84,18 +84,27 @@ public class AttackState : IEnemyState
 
     public void OnAttackComplete()
     {
-        isAttacking = false;
-
         if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
         {
             ToChaseState();
             return;
         }
 
-        //todo set damage num
-        PlayerController.Instance.DamangeHandler.Damage(enemy.AttackNum);
+        if (!PlayerController.Instance.IsInDefense)
+        {
+            //todo set damage num
+            PlayerController.Instance.DamangeHandler.Damage(enemy.AttackNum);
 
-        //在这里变成非追捕状态，是为了防止攻击之后在间隔中变成idel状态，又自动从idel变成了追捕
-        enemy.anim.SetBool(Consts.AniIsChase, false);
+            //在这里变成非追捕状态，是为了防止攻击之后在间隔中变成idel状态，又自动从idel变成了追捕
+            enemy.anim.SetBool(Consts.AniIsChase, false);
+        }
+        else
+        {
+            enemy.DamageHandler.DefenseDamage();
+            enemy.anim.SetBool(Consts.AniIsChase, true);
+        }
+
     }
+
+
 }

@@ -159,7 +159,7 @@ public class vp_HitscanBullet : MonoBehaviour
             else
             {
                 Debug.Log(hit.transform.position + "hit" + hit.point);
-                //todo 1.7为头部判定高度，1.7以上为头    zzzzzzzzzzzzz的标记
+                //todo 1.7为头部判定高度，1.7以上为头    --lpc的标记
                 if (hit.point.y - hit.transform.position.y < 1.7f)
                 {
 			        hit.collider.SendMessageUpwards(DamageMethodName, 10, SendMessageOptions.DontRequireReceiver);
@@ -170,8 +170,13 @@ public class vp_HitscanBullet : MonoBehaviour
                 }
             }
 
-			// prevent adding decals to objects based on layer
-			if (NoDecalOnTheseLayers.Length > 0)
+            // prevent adding decals to objects based on layer
+            if (hit.transform.CompareTag(Consts.EnemyTag))
+            {
+                TryDestroy();
+                return;
+            }
+            if (NoDecalOnTheseLayers.Length > 0)
 			{
 				foreach (int layer in NoDecalOnTheseLayers)
 				{

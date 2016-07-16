@@ -147,11 +147,16 @@ public class vp_ItemPickup : MonoBehaviour
 
 	static Dictionary<Collider, vp_Inventory> m_ColliderInventories = new Dictionary<Collider, vp_Inventory>();
 
+    public static Dictionary<Collider, vp_Inventory> ColliderInventories
+    {
+        get { return m_ColliderInventories; }
+    }
 
-	/// <summary>
-	/// 
-	/// </summary>
-	protected virtual void Awake()
+
+    /// <summary>
+    /// 
+    /// </summary>
+    protected virtual void Awake()
 	{
 
 		if(ItemType == typeof(vp_UnitType))
@@ -228,6 +233,8 @@ public class vp_ItemPickup : MonoBehaviour
 	/// </summary>
 	protected virtual void OnTriggerEnter(Collider col)
 	{
+	    if (col.name.Equals("Terrain"))
+	        return;
 
 		if (ItemType == null)
 			return;

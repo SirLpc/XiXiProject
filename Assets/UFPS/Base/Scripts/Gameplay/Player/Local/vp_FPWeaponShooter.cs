@@ -45,6 +45,11 @@ public class vp_FPWeaponShooter : vp_Shooter
 	// sound
 	public AudioClip SoundDryFire = null;						// out of ammo sound
 
+    //Handsome gun!!!!
+    private bool _isHandsomegun;
+    private HandsomegunProperty _handsomegunProperty;
+    private bool _isFireLeft = true;
+
 	// event handler property cast as a playereventhandler
 	vp_FPPlayerEventHandler m_Player = null;
 	vp_FPPlayerEventHandler Player
@@ -77,7 +82,9 @@ public class vp_FPWeaponShooter : vp_Shooter
 		m_NextAllowedFireTime = Time.time;
 
 		ProjectileSpawnDelay = Mathf.Min(ProjectileSpawnDelay, (ProjectileFiringRate - 0.1f));
-		
+
+	    _handsomegunProperty = GetComponent<HandsomegunProperty>();
+	    _isHandsomegun = _handsomegunProperty != null;
 	}
 
 
@@ -139,6 +146,10 @@ public class vp_FPWeaponShooter : vp_Shooter
 
 		if (!Player.DepleteAmmo.Try())
 		{
+            //todo --lpc bullet out !!
+            PlayerController.Instance.GiveBullets();
+		    return;
+
 			DryFire();
 			return;
 		}
@@ -158,13 +169,24 @@ public class vp_FPWeaponShooter : vp_Shooter
 
 		m_LastFireTime = Time.time;
 
+        //todo --lpc Fire animations!!!!
 		// play fire animation
-		if (AnimationFire != null)
+	    if (_isHandsomegun)
+	    {
+	        var index = _isFireLeft ? 0 : 1;
+	        _isFireLeft = !_isFireLeft;
+	        var curAniClip = _handsomegunProperty.FireClips[index];
+	        _handsomegunProperty.PlayAnimation(curAniClip.name);
+        }
+        //old fire anim functions
+	    else if (AnimationFire != null)
 		{
 			m_FPSWeapon.WeaponModel.GetComponent<Animation>()[AnimationFire.name].time = 0.0f;
 			m_FPSWeapon.WeaponModel.GetComponent<Animation>().Sample();
 			m_FPSWeapon.WeaponModel.GetComponent<Animation>().Play(AnimationFire.name);
 		}
+        
+        
 
 		// apply recoil
 		if (MotionRecoilDelay == 0.0f)

@@ -31,11 +31,14 @@ public class vp_FPWeaponReloader : MonoBehaviour
 
 	protected vp_SimpleInventory m_SimpleInventory;
 
+    //Handsome gun!!!!
+    private bool _isHandsomegun;
+    private HandsomegunProperty _handsomegunProperty;
 
-	/// <summary>
-	/// 
-	/// </summary>
-	protected virtual void Awake()
+    /// <summary>
+    /// 
+    /// </summary>
+    protected virtual void Awake()
 	{
 
 		m_Audio = GetComponent<AudioSource>();
@@ -47,8 +50,9 @@ public class vp_FPWeaponReloader : MonoBehaviour
 		// game uses the old inventory system
 		m_SimpleInventory = (vp_SimpleInventory)transform.root.GetComponent(typeof(vp_SimpleInventory));
 
-
-	}
+        _handsomegunProperty = GetComponent<HandsomegunProperty>();
+        _isHandsomegun = _handsomegunProperty != null;
+    }
 
 
 	/// <summary>
@@ -134,7 +138,13 @@ public class vp_FPWeaponReloader : MonoBehaviour
 		if (m_Player.Reload.AutoDuration == 0.0f && AnimationReload != null)
 			m_Player.Reload.AutoDuration = AnimationReload.length;
 
-		if (AnimationReload != null)
+        //todo --lpc Reload weapon!!
+	    if (_isHandsomegun && AnimationReload != null)
+	    {
+	        _handsomegunProperty.PlayAnimation(AnimationReload.name, true);
+	    }
+        //old reload anim functions
+	    else if (AnimationReload != null)
 			m_Weapon.WeaponModel.GetComponent<Animation>().CrossFade(AnimationReload.name);
 
 		if (m_Audio != null)

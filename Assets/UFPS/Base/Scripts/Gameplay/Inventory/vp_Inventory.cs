@@ -313,8 +313,10 @@ public class vp_Inventory : MonoBehaviour
 	/// </summary>
 	public virtual bool TryGiveItems(vp_ItemType type, int amount)
 	{
+        //todo --lpc add gun??
+
 		bool result = false;
-		while (amount > 0)
+        while (amount > 0)
 		{
 			if (TryGiveItem(type, 0))
 				result = true;
@@ -330,7 +332,7 @@ public class vp_Inventory : MonoBehaviour
 	public virtual bool TryGiveItem(vp_ItemType itemType, int id)
 	{
 
-		if (itemType == null)
+        if (itemType == null)
 		{
 			Debug.LogError("Error (" + vp_Utility.GetErrorLocation(2) + ") Item type was null.");
 			return false;

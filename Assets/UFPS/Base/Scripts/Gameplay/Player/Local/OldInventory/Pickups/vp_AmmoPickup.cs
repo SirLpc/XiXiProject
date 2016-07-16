@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 //
 //	vp_AmmoPickup.cs
-//	© VisionPunk. All Rights Reserved.
+//	?VisionPunk. All Rights Reserved.
 //	https://twitter.com/VisionPunk
 //	http://www.visionpunk.com
 //

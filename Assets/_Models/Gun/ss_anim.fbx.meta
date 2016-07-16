@@ -105,6 +105,7 @@ ModelImporter:
     7400008: reload
     7400010: SA
     9500000: //RootNode
+    11100000: //RootNode
     13700000: ss_body
     13700002: Weapon_Left
     13700004: Weapon_Right
@@ -138,7 +139,7 @@ ModelImporter:
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
-      loop: 0
+      loop: 1
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
@@ -1078,7 +1079,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

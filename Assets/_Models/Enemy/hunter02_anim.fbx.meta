@@ -126,28 +126,7 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nInbetween bone default rotation found in this file
-      is different from the one found in the source avatar:\n\t'Bip001 L HorseLink'
-      : rotation error = 45.713993 deg\n\t'Bip001 R HorseLink' : rotation error =
-      47.117882 deg\n\t'Bip001 Spine' : rotation error = 10.730295 deg\n\t'Bip001
-      Neck' : rotation error = 6.598331 deg\n\nClip 'Take 001' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'Bip001 L Calf' has translation
-      animation that will be discarded.\n\t'Bip001 L HorseLink' has translation animation
-      that will be discarded.\n\t'Bip001 L HorseLink' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip001 R Calf' has translation
-      animation that will be discarded.\n\t'Bip001 R HorseLink' has translation animation
-      that will be discarded.\n\t'Bip001 R HorseLink' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip001 Spine' has translation
-      animation that will be discarded.\n\t'Bip001 Spine' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip001 Spine1' has translation
-      animation that will be discarded.\n\t'Bip001 Spine2' has translation animation
-      that will be discarded.\n\t'Bip001 Neck' has translation animation that will
-      be discarded.\n\t'Bip001 Neck' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\t'Bip001 L Clavicle' has translation animation
-      that will be discarded.\n\t'Bip001 L Hand' has translation animation that will
-      be discarded.\n\t'Bip001 R Clavicle' has translation animation that will be
-      discarded.\n\t'Bip001 R Forearm' has translation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -181,7 +160,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
+      - time: 0.45906433
         functionName: AttackComplete
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -350,7 +329,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
+      - time: 0.43274853
         functionName: AttackComplete
         data: 
         objectReferenceParameter: {instanceID: 0}

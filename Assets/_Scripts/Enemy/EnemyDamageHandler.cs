@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class EnemyDamageHandler : vp_DamageHandler
 {
-    [SerializeField]
-    private float _fadeDownOutSpeed = 3f;
-    [SerializeField]
-    private float _lieOnGroundTime = 2f;
+    [SerializeField] private float _fadeDownOutSpeed = 3f;
+    [SerializeField] private float _lieOnGroundTime = 2f;
+    [SerializeField] private float _defenseBackSpeed = 3f;
 
     private StatePatternEnemy _enemy;
     private Collider[] _colliders;
+    public bool IsInDefenseHurt { get; private set; }
 
 
     private void Awake()
@@ -81,6 +81,26 @@ public class EnemyDamageHandler : vp_DamageHandler
         StartCoroutine(CoFadeDownOutAndRecycle());
     }
 
+    public void DefenseDamage()
+    {
+        IsInDefenseHurt = true;
+        _enemy.anim.SetTrigger(Consts.AniTriggerDefenseHurt);
+        StartCoroutine(CoBeenDefenseBack());
+    }
+
+    private IEnumerator CoBeenDefenseBack()
+    {
+        var t = 0f;
+        while (t < Consts.AniDefenseHurtDuration)
+        {
+            t += Time.deltaTime;
+            yield return null;
+            transform.Translate(Vector3.back * Time.deltaTime * _defenseBackSpeed);
+        }
+
+        IsInDefenseHurt = false;
+    }
+
     private IEnumerator CoFadeDownOutAndRecycle()
     {
         yield return new WaitForSeconds(Consts.AniDieDuration);
@@ -95,7 +115,6 @@ public class EnemyDamageHandler : vp_DamageHandler
             yield return null;
             timer += Time.deltaTime;
             transform.localPosition += Vector3.down * Time.deltaTime * _fadeDownOutSpeed;
-            Debug.Log(transform.localPosition);
         }
 
         RemoveBulletHoles();

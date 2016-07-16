@@ -254,6 +254,9 @@ public class vp_Activity : vp_Event			// non-generic version for 0 arguments
 			return false;
 		}
 
+	    if (PlayerController.Instance.IsInDefense)
+	        return false;
+
 		foreach (Condition b in StartConditions.GetInvocationList())
 		{
 			if (!b.Invoke())

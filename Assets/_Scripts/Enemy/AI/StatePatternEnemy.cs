@@ -33,6 +33,13 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
+    public EnemyDamageHandler DamageHandler { get; private set; }
+
+    public bool IsInDefenseHurt
+    {
+        get { return DamageHandler.IsInDefenseHurt; }
+    }
+
     private float lastHurtPlayTime;
 
     private void Awake()
@@ -44,6 +51,8 @@ public class StatePatternEnemy : MonoBehaviour
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+
+        DamageHandler = GetComponent<EnemyDamageHandler>();
     }
 
     // Use this for initialization
@@ -67,7 +76,7 @@ public class StatePatternEnemy : MonoBehaviour
 
     public bool CanPlayHurtAnim()
     {
-        if (Time.time - lastHurtPlayTime < 0.5f)
+        if (Time.time - lastHurtPlayTime < 1f)
             return false;
 
         if (IsPlayingHurt())
@@ -107,6 +116,9 @@ public class StatePatternEnemy : MonoBehaviour
         return curAniState.IsName("UpperLayer.hurt");
     }
 
+    /// <summary>
+    /// Called from the anmation even!(animation name: "attack2 0" and "attack1 0")
+    /// </summary>
     public void AttackComplete()
     {
         attackState.OnAttackComplete();
