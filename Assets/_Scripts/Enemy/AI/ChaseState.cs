@@ -49,6 +49,8 @@ public class ChaseState : IEnemyState
 
         lastAttackTime = Time.time;
         enemy.currentState = enemy.attackState;
+        enemy.anim.SetBool(Consts.AniIsInAttack, true);
+        enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 
     private void Look()

@@ -29,6 +29,7 @@ public class AttackState : IEnemyState
         enemy.currentState = enemy.chaseState;
         enemy.anim.SetBool(Consts.AniIsChase, true);
         lastAttackTime = enemy.AttackInterval;
+        enemy.anim.SetBool(Consts.AniIsInAttack, false);
     }
 
     public void ToPatrolState()
@@ -96,7 +97,7 @@ public class AttackState : IEnemyState
             PlayerController.Instance.DamangeHandler.Damage(enemy.AttackNum);
 
             //在这里变成非追捕状态，是为了防止攻击之后在间隔中变成idel状态，又自动从idel变成了追捕
-            enemy.anim.SetBool(Consts.AniIsChase, false);
+            //enemy.anim.SetBool(Consts.AniIsChase, false);
         }
         else
         {

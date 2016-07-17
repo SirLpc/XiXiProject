@@ -40,7 +40,14 @@ public class EnemyDamageHandler : vp_DamageHandler
         if (m_CurrentHealth > 0.0f)
         {
             if(_enemy.CanPlayHurtAnim())
-                _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
+            {
+                if (_enemy.currentState == _enemy.attackState)
+                    _enemy.anim.SetTrigger(Consts.AniTriggerDefenseHurt);
+                else
+                {
+                    _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
+                }
+            }
         }
         else
             vp_Timer.In(UnityEngine.Random.Range(MinDeathDelay, MaxDeathDelay), delegate ()
