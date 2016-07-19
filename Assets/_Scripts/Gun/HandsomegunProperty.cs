@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class HandsomegunProperty : MonoBehaviour
 {
+    public vp_FPWeaponShooter Shooter;
 
     //2的数组，0对应lefthand anim, 1对应righthand
     public AnimationClip[] FireClips;
     public AnimationClip IdelClip;
     public AnimationClip DefenseClip;
     public AnimationClip SpecailAttackClip;
-
 
     private Animation _animation;
     private Animation Animation
@@ -23,7 +23,7 @@ public class HandsomegunProperty : MonoBehaviour
             _animation = GetComponentInChildren<Animation>();
             _animation[DefenseClip.name].speed *= 1.2f;
             //SA:means 2 seconds(in playerController._specialAttackEffectiveTime), normal 1.6667f
-            _animation[SpecailAttackClip.name].speed *= 1.2f;  
+            _animation[SpecailAttackClip.name].speed *= 0.5f;  
             return _animation;
         }
     }
@@ -46,7 +46,8 @@ public class HandsomegunProperty : MonoBehaviour
 
     public void StopAnimation()
     {
-        Animation.Stop();
+        PlayAnimation(IdelClip.name);
     }
+
 
 }

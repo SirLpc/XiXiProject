@@ -198,6 +198,19 @@ public class vp_FPWeaponShooter : vp_Shooter
 		
 	}
 
+    public void SpecialAttackFire()
+    {
+        m_LastFireTime = Time.time;
+
+        // apply recoil
+        if (MotionRecoilDelay == 0.0f)
+            ApplyRecoil();
+        else
+            vp_Timer.In(MotionRecoilDelay, ApplyRecoil);
+
+        base.Fire();
+    }
+
 
 	/// <summary>
 	/// applies some advanced recoil motions on the weapon when fired
