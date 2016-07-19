@@ -44,4 +44,9 @@ public class HandsomegunProperty : MonoBehaviour
         }
     }
 
+    public void StopAnimation()
+    {
+        Animation.Stop();
+    }
+
 }

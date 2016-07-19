@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml;
 
 public class PlayerController : MonoBehaviour
 {
@@ -77,12 +78,26 @@ public class PlayerController : MonoBehaviour
             if (vp_FPInput.DetectCancelInputSpecialAttack())
             {
                 IsInSpecialAttack = false;
+                _handsomegunProperty.StopAnimation();
                 yield break;
             }
             else
                 yield return null;
         }
+
+        //不能马上结束，要等玩家抬起鼠标后才行，不然很别扭
         Debug.Log("attack ok!");
+        while (vp_FPInput.DetectCancelInputSpecialAttack())
+        {
+            yield return null;
+        }
+        StartCoroutine(CoClearSpecialAttack());
+    }
+
+    private IEnumerator CoClearSpecialAttack()
+    {
+        yield return new WaitForSeconds(1.8f);
+
         IsInSpecialAttack = false;
     }
 
