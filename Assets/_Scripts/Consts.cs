@@ -13,6 +13,7 @@ public class Consts
     public const string AniTriggerHurt = "triggerHurt";
     public const string AniTriggerDie = "triggerDie";
     public const string AniTriggerDefenseHurt = "triggerDefenseHurt";
+    public const string AniTriggerNormalHurt = "triggerNormalHurt";
     public const string AniIsInAttack = "isInAttack";
 
     public const int AniDieDuration = 2;

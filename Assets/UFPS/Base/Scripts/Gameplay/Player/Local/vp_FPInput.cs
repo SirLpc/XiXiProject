@@ -13,6 +13,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////////
 
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -51,7 +52,9 @@ public class vp_FPInput : MonoBehaviour
 	public float MouseSmoothWeight { get { return m_FPCamera.MouseSmoothWeight; } set { m_FPCamera.MouseSmoothWeight = Mathf.Clamp01(value); } }
 	public bool MouseAcceleration { get { return m_FPCamera.MouseAcceleration; } set { m_FPCamera.MouseAcceleration = value; } }
 	public float MouseAccelerationThreshold { get { return m_FPCamera.MouseAccelerationThreshold; } set { m_FPCamera.MouseAccelerationThreshold = value; } }
-	
+
+    private Coroutine coroutineA, coroutineB;
+    private bool okA, okB;
 
 	/// <summary>
 	/// 
@@ -84,6 +87,9 @@ public class vp_FPInput : MonoBehaviour
 		// handle input for weapons
 		InputAttack();
 		InputZoom();
+        
+        InputSpecialAttack();
+
 		InputReload();
 		InputSetWeapon();
 
@@ -193,17 +199,26 @@ public class vp_FPInput : MonoBehaviour
 	/// </summary>
 	protected virtual void InputZoom()
 	{
-		if (vp_Input.GetButton("Zoom"))
-            PlayerController.Instance.TryDefense();
+	    if (okB)
+	        return;
 
-	    return;
+	    if (vp_Input.GetButton("Zoom"))
+	        //PlayerController.Instance.TryDefense();
+	        coroutineB = StartCoroutine(CoDectectB());
 
-		if (vp_Input.GetButton("Zoom"))
-			Player.Zoom.TryStart();
-		else
-			Player.Zoom.TryStop();
-
+		//if (vp_Input.GetButton("Zoom"))
+		//	Player.Zoom.TryStart();
+		//else
+		//	Player.Zoom.TryStop();
 	}
+
+    private IEnumerator CoDectectB()
+    {
+        okB = true;
+        yield return new WaitForSeconds(PlayerController.Instance.SpecialAttackBearFrame);
+        okB = false;
+        PlayerController.Instance.TryDefense();
+    } 
 
 
 	/// <summary>
@@ -226,20 +241,56 @@ public class vp_FPInput : MonoBehaviour
 		if (!Screen.lockCursor)
 			return;
 
-		if (vp_Input.GetButton("Attack"))
-			Player.Attack.TryStart();
-		else
-			Player.Attack.TryStop();
+	    if (okA)
+	        return;
 
-	}
+	    if (vp_Input.GetButton("Attack"))
+	        //Player.Attack.TryStart();
+	        coroutineA = StartCoroutine(CoDectectA());
+        else
+            Player.Attack.TryStop();
+    }
+
+    private IEnumerator CoDectectA()
+    {
+        okA = true;
+        yield return new WaitForSeconds(PlayerController.Instance.SpecialAttackBearFrame);
+        Player.Attack.TryStart();
+        StartCoroutine(CoTryStop());
+    }
+
+    private IEnumerator CoTryStop()
+    {
+        yield return null;
+        okA = false;
+    } 
 
 
-	/// <summary>
-	/// when the reload button is pressed, broadcasts a message
-	/// to any listening components asking them to reload
-	/// NOTE: reload may not succeed due to ammo status etc.
-	/// </summary>
-	protected virtual void InputReload()
+    private void InputSpecialAttack()
+    {
+        if (!okA || !okB)
+            return;
+
+        okA = okB = false;
+
+        StopCoroutine(coroutineA);
+        StopCoroutine(coroutineB);
+
+        PlayerController.Instance.TrySpecialAttack();
+    }
+
+    public static bool DetectCancelInputSpecialAttack()
+    {
+        return vp_Input.GetButtonUp("Attack") || vp_Input.GetButtonUp("Zoom");
+    }
+
+
+    /// <summary>
+    /// when the reload button is pressed, broadcasts a message
+    /// to any listening components asking them to reload
+    /// NOTE: reload may not succeed due to ammo status etc.
+    /// </summary>
+    protected virtual void InputReload()
 	{
 
 		if (vp_Input.GetButtonDown("Reload"))

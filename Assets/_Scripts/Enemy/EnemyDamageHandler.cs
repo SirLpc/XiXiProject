@@ -42,11 +42,9 @@ public class EnemyDamageHandler : vp_DamageHandler
             if(_enemy.CanPlayHurtAnim())
             {
                 if (_enemy.currentState == _enemy.attackState)
-                    _enemy.anim.SetTrigger(Consts.AniTriggerDefenseHurt);
+                    _enemy.anim.SetTrigger(Consts.AniTriggerNormalHurt);
                 else
-                {
                     _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
-                }
             }
         }
         else

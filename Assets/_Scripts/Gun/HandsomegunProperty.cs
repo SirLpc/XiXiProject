@@ -9,35 +9,38 @@ public class HandsomegunProperty : MonoBehaviour
     public AnimationClip[] FireClips;
     public AnimationClip IdelClip;
     public AnimationClip DefenseClip;
+    public AnimationClip SpecailAttackClip;
 
 
-    private Animation _fireAnimation;
-    private Animation FireAnimation
+    private Animation _animation;
+    private Animation Animation
     {
         get
         {
-            if (_fireAnimation != null)
-                return _fireAnimation;
+            if (_animation != null)
+                return _animation;
             
-            _fireAnimation = GetComponentInChildren<Animation>();
-            _fireAnimation[DefenseClip.name].speed *= 1.2f;
-            return _fireAnimation;
+            _animation = GetComponentInChildren<Animation>();
+            _animation[DefenseClip.name].speed *= 1.2f;
+            //SA:means 2 seconds(in playerController._specialAttackEffectiveTime), normal 1.6667f
+            _animation[SpecailAttackClip.name].speed *= 1.2f;  
+            return _animation;
         }
     }
 
     public void PlayAnimation(string animName, bool isCrossFade = false)
     {
-        if (FireAnimation == null) return;
+        if (Animation == null) return;
 
         if (!isCrossFade)
         {
-            FireAnimation[animName].time = 0.0f;
-            FireAnimation.Sample();
-            FireAnimation.Play(animName); 
+            Animation[animName].time = 0.0f;
+            Animation.Sample();
+            Animation.Play(animName); 
         }
         else
         {
-            FireAnimation.CrossFade(animName);
+            Animation.CrossFade(animName);
         }
     }
 
