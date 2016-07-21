@@ -76,21 +76,18 @@ public class PlayerController : MonoBehaviour
         while (counter < _specialAttackEffectiveTime)
         {
             counter += Time.deltaTime;
-            if (vp_FPInput.DetectCancelInputSpecialAttack())
+            if (!vp_FPInput.DetectCancelInputSpecialAttack())
             {
-                IsInSpecialAttack = false;
-                _handsomegunProperty.StopAnimation();
-                Debug.Log("in break!");
-                yield break;
+                yield return null;
             }
             else
             {
-                Debug.Log("in nullll!");
-                yield return null;
+                IsInSpecialAttack = false;
+                _handsomegunProperty.StopAnimation();
+                yield break;
             }
         }
 
-        Debug.Log("special attaack ok!");
         _handsomegunProperty.Shooter.SpecialAttackFire();
 
         //不能马上结束，要等玩家抬起鼠标后才行，不然很别扭
