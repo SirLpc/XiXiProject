@@ -174,10 +174,10 @@ public class vp_FPWeaponShooter : vp_Shooter
 	    if (_isHandsomegun)
 	    {
 	        var index = _isFireLeft ? 0 : 1;
-	        _isFireLeft = !_isFireLeft;
 	        var curFireClip = _handsomegunProperty.FireClips[index];
 	        _handsomegunProperty.PlayAnimation(curFireClip.name);
             AdjustMuzzlePosition();
+	        _isFireLeft = !_isFireLeft;
         }
         //old fire anim functions
 	    else if (AnimationFire != null)
@@ -208,6 +208,8 @@ public class vp_FPWeaponShooter : vp_Shooter
             ApplyRecoil();
         else
             vp_Timer.In(MotionRecoilDelay, ApplyRecoil);
+
+        AdjustMuzzlePosition(true);
 
         base.Fire();
     }
@@ -303,13 +305,20 @@ public class vp_FPWeaponShooter : vp_Shooter
 	}
 
     //todo --lpc muzzle flash postion handle here!
-    public void AdjustMuzzlePosition()
+    public void AdjustMuzzlePosition(bool isSpecialAttack = false)
     {
         if (m_MuzzleFlash != null)
         {
-            var dirX = _isFireLeft ? 0.14f : -0.17f;
-            var dir = new Vector3(dirX, 0.1f, 0.2f);
-            
+            Vector3 dir;
+            if(!isSpecialAttack)
+            {
+                var dirX = _isFireLeft ? -0.14f : 0.1f;
+                //var dirX = _isFireLeft ? TestPosScript.instance.left : TestPosScript.instance.right;
+                dir = new Vector3(dirX, 0.00f, 0.0f);
+            }
+            else
+                dir = Vector3.zero;
+
             m_MuzzleFlash.transform.localPosition = MuzzleFlashPosition + dir;
         }
     }
