@@ -312,8 +312,8 @@ public class vp_FPWeaponShooter : vp_Shooter
             Vector3 dir;
             if(!isSpecialAttack)
             {
-                var dirX = _isFireLeft ? -0.14f : 0.1f;
-                //var dirX = _isFireLeft ? TestPosScript.instance.left : TestPosScript.instance.right;
+                //var dirX = _isFireLeft ? -0.14f : 0.1f;
+                var dirX = _isFireLeft ? TestPosScript.instance.left : TestPosScript.instance.right;
                 dir = new Vector3(dirX, 0.00f, 0.0f);
             }
             else
