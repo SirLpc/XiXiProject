@@ -69,7 +69,7 @@ public class AttackState : IEnemyState
             return;
         }
 
-        var ran = Random.Range(0, 3);
+        var ran = Random.Range(0, 1);
         enemy.anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
     }
 
@@ -80,7 +80,7 @@ public class AttackState : IEnemyState
             ToChaseState();
             return;
         }
-        enemy.transform.LookAt(enemy.chaseTarget);
+        //enemy.transform.LookAt(enemy.chaseTarget);
     }
 
     public void OnAttackComplete()
