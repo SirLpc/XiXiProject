@@ -58,7 +58,6 @@ public class vp_Shooter : vp_Component
 
 	public GameObject MuzzleFlash { get { return m_MuzzleFlash; } }
 
-
 	/// <summary>
 	/// in 'Awake' we do things that need to be run once at the
 	/// very beginning. NOTE: as of Unity 4, gameobject hierarchy
@@ -155,18 +154,18 @@ public class vp_Shooter : vp_Component
 			vp_Timer.In(ProjectileSpawnDelay, SpawnProjectiles);
 
 		// spawn shell casing
-		if (ShellEjectDelay == 0.0f)
-			EjectShell();
-		else
-			vp_Timer.In(ShellEjectDelay, EjectShell);
+		//if (ShellEjectDelay == 0.0f)
+		//	EjectShell();
+		//else
+		//	vp_Timer.In(ShellEjectDelay, EjectShell);
 
-		// show muzzle flash
-		if (MuzzleFlashDelay == 0.0f)
-			ShowMuzzleFlash();
-		else
-			vp_Timer.In(MuzzleFlashDelay, ShowMuzzleFlash);
+        // show muzzle flash
+        if (MuzzleFlashDelay == 0.0f)
+            ShowMuzzleFlash();
+        else
+            vp_Timer.In(MuzzleFlashDelay, ShowMuzzleFlash);
 
-	}
+    }
 
 
 	/// <summary>
@@ -314,6 +313,8 @@ public class vp_Shooter : vp_Component
 		// update muzzle flash position, scale and fadespeed from preset
 		if (m_MuzzleFlash != null)
 		{
+		    //bool left = (this as vp_FPWeaponShooter).IsFireLeft;
+		    //var dir = left ? Vector3.left : Vector3.right;
 			m_MuzzleFlash.transform.localPosition = MuzzleFlashPosition;
 			m_MuzzleFlash.transform.localScale = MuzzleFlashScale;
 			m_MuzzleFlash.SendMessage("SetFadeSpeed", MuzzleFlashFadeSpeed, SendMessageOptions.DontRequireReceiver);

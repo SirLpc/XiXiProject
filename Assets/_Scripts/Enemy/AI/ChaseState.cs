@@ -6,9 +6,7 @@ public class ChaseState : IEnemyState
 {
 
     private readonly StatePatternEnemy enemy;
-
-    private float lastAttackTime;
-
+    //private float lastAttackTime;
 
     public ChaseState(StatePatternEnemy statePatternEnemy)
     {
@@ -45,10 +43,19 @@ public class ChaseState : IEnemyState
     public void ToAttackState()
     {
         //if (Time.time - lastAttackTime < enemy.AttackInterval)
-            //return;
+        //    return;
+        //lastAttackTime = Time.time;
 
-        lastAttackTime = Time.time;
+        enemy.anim.SetBool(Consts.AniIsChase, false);
+        enemy.anim.SetBool(Consts.AniIsInAttack, true);
         enemy.currentState = enemy.attackState;
+    }
+
+    public void ToSAHurtState()
+    {
+        enemy.anim.SetBool(Consts.AniIsChase, false);
+        enemy.anim.SetTrigger(Consts.AniTriggerSAHurt);
+        enemy.currentState = enemy.saHurtState;
     }
 
     private void Look()

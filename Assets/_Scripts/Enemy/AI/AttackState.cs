@@ -28,7 +28,7 @@ public class AttackState : IEnemyState
     {
         enemy.currentState = enemy.chaseState;
         enemy.anim.SetBool(Consts.AniIsChase, true);
-        lastAttackTime = enemy.AttackInterval;
+        enemy.anim.SetBool(Consts.AniIsInAttack, false);
     }
 
     public void ToPatrolState()
@@ -40,9 +40,15 @@ public class AttackState : IEnemyState
         Debug.Log("Can't transition to attack state");
     }
 
+    public void ToSAHurtState()
+    {
+        enemy.anim.SetTrigger(Consts.AniTriggerSAHurt);
+        enemy.currentState = enemy.saHurtState;
+    }
+
     public void UpdateState()
     {
-        if (enemy.IsInDefenseHurt)
+        if (enemy.IsPlayingAttack() || enemy.IsInDefenseHurt)
             return;
         Look();
         Attack();
@@ -74,6 +80,8 @@ public class AttackState : IEnemyState
 
     private void Look()
     {
+        enemy.meshRendererFlag.material.color = Color.magenta;
+
         if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
         {
             ToChaseState();
@@ -96,7 +104,7 @@ public class AttackState : IEnemyState
             PlayerController.Instance.DamangeHandler.Damage(enemy.AttackNum);
 
             //在这里变成非追捕状态，是为了防止攻击之后在间隔中变成idel状态，又自动从idel变成了追捕
-            enemy.anim.SetBool(Consts.AniIsChase, false);
+            //enemy.anim.SetBool(Consts.AniIsChase, false);
         }
         else
         {

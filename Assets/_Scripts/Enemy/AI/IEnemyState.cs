@@ -15,4 +15,7 @@ public interface IEnemyState
     void ToChaseState();
 
     void ToAttackState();
+
+    void ToSAHurtState();
+
 }
