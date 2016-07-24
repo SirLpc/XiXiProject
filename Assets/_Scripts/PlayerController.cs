@@ -9,10 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _specialAttackBearGap = 1;
     [SerializeField] private float _specialAttackGap = 7;
     [SerializeField] private float _specialAttackEffectiveTime = 2;
-    [SerializeField] private CharacterController _characterController;
+    //[SerializeField] private CharacterController _characterController;
 
     public static PlayerController Instance = null;
-    public vp_FPPlayerDamageHandler DamangeHandler { get; set; }
+    public vp_FPPlayerDamageHandler DamangeHandler { get; private set; }
 
     private HandsomegunProperty _handsomegunProperty;
 
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         _handsomegunProperty.Shooter.SpecialAttackFire();
 
-        _characterController.Move(Vector3.right*3f);
+        //_characterController.Move(transform.forward * -1 * 3);
 
         //不能马上结束，要等玩家抬起鼠标后才行，不然很别扭
         while (vp_FPInput.DetectCancelInputSpecialAttack())

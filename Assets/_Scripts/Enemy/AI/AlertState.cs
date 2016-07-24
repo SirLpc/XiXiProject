@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AlertState : IEnemyState
 
@@ -43,6 +44,12 @@ public class AlertState : IEnemyState
     public void ToAttackState()
     {
 
+    }
+
+    public void ToSAHurtState()
+    {
+        enemy.anim.SetTrigger(Consts.AniTriggerSAHurt);
+        enemy.currentState = enemy.saHurtState;
     }
 
     private void Look()

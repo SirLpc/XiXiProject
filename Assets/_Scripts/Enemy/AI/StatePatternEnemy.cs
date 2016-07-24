@@ -29,6 +29,8 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public AttackState attackState;
     [HideInInspector]
+    public SAHurtState saHurtState;
+    [HideInInspector]
     public NavMeshAgent navMeshAgent;
     [HideInInspector]
     public Animator anim;
@@ -48,6 +50,7 @@ public class StatePatternEnemy : MonoBehaviour
         alertState = new AlertState(this);
         patrolState = new PatrolState(this);
         attackState = new AttackState(this);
+        saHurtState = new SAHurtState(this);
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -58,6 +61,7 @@ public class StatePatternEnemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         currentState = patrolState;
         IsAlive = true;
     }
@@ -65,7 +69,10 @@ public class StatePatternEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsAlive)
+        if (Time.frameCount % 2 != 0)
+            return;
+
+        if (IsAlive)
             currentState.UpdateState();
     }
 
@@ -87,9 +94,9 @@ public class StatePatternEnemy : MonoBehaviour
             if (Time.time - lastHurtPlayTime < AttackInterval)
                 return false;
 
-            var cur = anim.GetCurrentAnimatorStateInfo(0);
-            if (cur.IsName("BaseLayer.attack1") || cur.IsName("BaseLayer.attack2"))
+            if (IsPlayingAttack())
                 return false;
+
 
             //var attackT = .7f;
             //var hurtT = .7f;
@@ -116,6 +123,12 @@ public class StatePatternEnemy : MonoBehaviour
         return curAniState.IsName("UpperLayer.hurt");
     }
 
+    public bool IsPlayingAttack()
+    {
+        var cur = anim.GetCurrentAnimatorStateInfo(0);
+        return cur.IsName("BaseLayer.attack1") || cur.IsName("BaseLayer.attack2");
+    }
+
     /// <summary>
     /// Called from the anmation even!(animation name: "attack2 0" and "attack1 0")
     /// </summary>
@@ -123,4 +136,5 @@ public class StatePatternEnemy : MonoBehaviour
     {
         attackState.OnAttackComplete();
     }
+
 }

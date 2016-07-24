@@ -39,13 +39,12 @@ public class EnemyDamageHandler : vp_DamageHandler
 
         if (m_CurrentHealth > 0.0f)
         {
-            if(_enemy.CanPlayHurtAnim())
-            {
-                if (_enemy.currentState == _enemy.attackState)
-                    _enemy.anim.SetTrigger(Consts.AniTriggerNormalHurt);
-                else
-                    _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
-            }
+            ToChaseStateIfNeed();
+
+            if (!PlayerController.Instance.IsInSpecialAttack)
+                PlayHurtAniIfNeed();
+            else
+                _enemy.currentState.ToSAHurtState();
         }
         else
             vp_Timer.In(UnityEngine.Random.Range(MinDeathDelay, MaxDeathDelay), delegate ()
@@ -58,6 +57,27 @@ public class EnemyDamageHandler : vp_DamageHandler
         // sound upon every hit (but only if the object survives)
         // this is the place
 
+    }
+
+    private void ToChaseStateIfNeed()
+    {
+        if (_enemy.currentState == _enemy.patrolState
+            || _enemy.currentState == _enemy.alertState)
+        {
+            _enemy.chaseTarget = PlayerController.Instance.transform;
+            _enemy.currentState.ToChaseState();
+        }
+    }
+
+    private void PlayHurtAniIfNeed()
+    {
+        if (_enemy.CanPlayHurtAnim())
+        {
+            if (_enemy.currentState == _enemy.attackState)
+                _enemy.anim.SetTrigger(Consts.AniTriggerNormalHurt);
+            else
+                _enemy.anim.SetTrigger(Consts.AniTriggerHurt);
+        }
     }
 
     /// <summary>

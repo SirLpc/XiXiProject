@@ -28,7 +28,6 @@ public class AttackState : IEnemyState
     {
         enemy.currentState = enemy.chaseState;
         enemy.anim.SetBool(Consts.AniIsChase, true);
-        lastAttackTime = enemy.AttackInterval;
         enemy.anim.SetBool(Consts.AniIsInAttack, false);
     }
 
@@ -41,9 +40,15 @@ public class AttackState : IEnemyState
         Debug.Log("Can't transition to attack state");
     }
 
+    public void ToSAHurtState()
+    {
+        enemy.anim.SetTrigger(Consts.AniTriggerSAHurt);
+        enemy.currentState = enemy.saHurtState;
+    }
+
     public void UpdateState()
     {
-        if (enemy.IsInDefenseHurt)
+        if (enemy.IsPlayingAttack() || enemy.IsInDefenseHurt)
             return;
         Look();
         Attack();
@@ -69,18 +74,20 @@ public class AttackState : IEnemyState
             return;
         }
 
-        var ran = Random.Range(0, 1);
+        var ran = Random.Range(0, 3);
         enemy.anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
     }
 
     private void Look()
     {
+        enemy.meshRendererFlag.material.color = Color.magenta;
+
         if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
         {
             ToChaseState();
             return;
         }
-        //enemy.transform.LookAt(enemy.chaseTarget);
+        enemy.transform.LookAt(enemy.chaseTarget);
     }
 
     public void OnAttackComplete()

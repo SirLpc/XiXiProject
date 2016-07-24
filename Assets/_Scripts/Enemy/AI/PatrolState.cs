@@ -49,10 +49,16 @@ public class PatrolState : IEnemyState
 
     }
 
+    public void ToSAHurtState()
+    {
+        enemy.anim.SetTrigger(Consts.AniTriggerSAHurt);
+        enemy.currentState = enemy.saHurtState;
+    }
+
     private void Look()
     {
         RaycastHit hit;
-        Debug.DrawRay(enemy.eyes.transform.position, enemy.eyes.transform.forward * enemy.sightRange, Color.blue,0.5f );
+        //Debug.DrawRay(enemy.eyes.transform.position, enemy.eyes.transform.forward * enemy.sightRange, Color.blue,0.5f );
         if (Physics.Raycast(enemy.eyes.transform.position, enemy.eyes.transform.forward, out hit, enemy.sightRange) && hit.collider.CompareTag("Player"))
         {
             enemy.chaseTarget = hit.transform;

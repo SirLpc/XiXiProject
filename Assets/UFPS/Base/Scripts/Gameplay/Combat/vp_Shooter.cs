@@ -154,10 +154,10 @@ public class vp_Shooter : vp_Component
 			vp_Timer.In(ProjectileSpawnDelay, SpawnProjectiles);
 
 		// spawn shell casing
-		if (ShellEjectDelay == 0.0f)
-			EjectShell();
-		else
-			vp_Timer.In(ShellEjectDelay, EjectShell);
+		//if (ShellEjectDelay == 0.0f)
+		//	EjectShell();
+		//else
+		//	vp_Timer.In(ShellEjectDelay, EjectShell);
 
         // show muzzle flash
         if (MuzzleFlashDelay == 0.0f)
