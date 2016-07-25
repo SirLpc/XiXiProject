@@ -76,13 +76,13 @@ public class vp_FPInput : MonoBehaviour
 			return;
 		
 		// interaction
-		InputInteract();
+		//InputInteract();
 
 		// handle input for moving
 		InputMove();
-		InputRun();
-		InputJump();
-		InputCrouch();
+		//InputRun();
+		//InputJump();
+		//InputCrouch();
 
 		// handle input for weapons
 		InputAttack();
