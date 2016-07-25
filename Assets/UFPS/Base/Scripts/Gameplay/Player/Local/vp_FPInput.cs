@@ -74,12 +74,17 @@ public class vp_FPInput : MonoBehaviour
 
 		if (!m_AllowGameplayInput)
 			return;
-		
-		// interaction
-		//InputInteract();
 
-		// handle input for moving
-		InputMove();
+#if UNITY_ANDROID
+        VR_InputMove();
+        VR_InputAttack();
+        VR_InputDefense();
+#else
+        // interaction
+        //InputInteract();
+
+        // handle input for moving
+        InputMove();
 		//InputRun();
 		//InputJump();
 		//InputCrouch();
@@ -87,19 +92,85 @@ public class vp_FPInput : MonoBehaviour
 		// handle input for weapons
 		InputAttack();
 		InputZoom();
-        
+#endif
+
         InputSpecialAttack();
+        InputReload();
+        InputSetWeapon();
+    }
 
-		InputReload();
-		InputSetWeapon();
+    private KeyCode currentKey;
+    private Event ev;
+    private bool atkPressed = false;
+    private string msg = string.Empty;
+    protected void OnGUI()
+    {
+        if (Input.anyKey)
+        {
+            ev = Event.current;
+            if (ev.isKey)
+            {
+                currentKey = ev.keyCode;
+                if (currentKey.ToString() == "Space")
+                {
+                    atkPressed = true;
+                    msg = "\n atk pressed!!!";
+                }
+            }
+        }
+        GUILayout.Label("MSG:" + msg);
+    }
 
-	}
-	
+    #region VR INPUT
+    private void VR_InputMove()
+    {
+        // NOTES: you may also use 'GetAxis', but that will add smoothing
+        // to the input from both Ultimate FPS and from Unity, and might
+        // require some tweaking in order not to feel laggy
 
-	/// <summary>
-	/// Handles interaction with the game world
-	/// </summary>
-	protected virtual void InputInteract()
+        Player.InputMoveVector.Set(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+    }
+    private void VR_InputAttack()
+    {
+        // TIP: uncomment this to prevent player from attacking while running
+        //if (Player.Run.Active)
+        //	return;
+
+        // if mouse cursor is visible, an extra click is needed
+        // before we can attack
+        //if (!Screen.lockCursor)
+        //    return;
+
+        if (okA)
+            return;
+
+        if (atkPressed)
+        {
+            coroutineA = StartCoroutine(CoDectectA());
+        }
+        else
+            Player.Attack.TryStop();
+
+        atkPressed = false;
+    }
+    private void VR_InputDefense()
+    {
+        if (okB)
+            return;
+
+        if (Input.GetKey(KeyCode.N))
+        {
+            msg = "\n defense pressed!!!";
+            coroutineB = StartCoroutine(CoDectectB());
+        }
+    }
+#endregion
+
+
+    /// <summary>
+    /// Handles interaction with the game world
+    /// </summary>
+    protected virtual void InputInteract()
 	{
 
 		if(vp_Input.GetButtonDown("Interact"))
@@ -116,13 +187,12 @@ public class vp_FPInput : MonoBehaviour
 	protected virtual void InputMove()
 	{
 
-		// NOTES: you may also use 'GetAxis', but that will add smoothing
-		// to the input from both Ultimate FPS and from Unity, and might
-		// require some tweaking in order not to feel laggy
+        // NOTES: you may also use 'GetAxis', but that will add smoothing
+        // to the input from both Ultimate FPS and from Unity, and might
+        // require some tweaking in order not to feel laggy
 
-		Player.InputMoveVector.Set(new Vector2(vp_Input.GetAxisRaw("Horizontal"), vp_Input.GetAxisRaw("Vertical")));
-
-	}
+        Player.InputMoveVector.Set(new Vector2(vp_Input.GetAxisRaw("Horizontal"), vp_Input.GetAxisRaw("Vertical")));
+    }
 
 
 	/// <summary>
