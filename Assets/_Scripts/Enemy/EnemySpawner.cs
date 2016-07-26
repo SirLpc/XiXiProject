@@ -15,14 +15,19 @@ public class EnemySpawner : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(Consts.PlayerTag) && PlayerIn != null)
+        {
             PlayerIn.Invoke();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(Consts.PlayerTag) && playerOut != null)
+        {
             playerOut.Invoke();
+        }
     }
+
 
     public class PlayerEvent : UnityEvent { }
 }

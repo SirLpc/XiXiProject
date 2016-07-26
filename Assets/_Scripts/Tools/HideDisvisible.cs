@@ -14,12 +14,10 @@ public class HideDisvisible : MonoBehaviour
     void OnBecameInvisible()
     {
         particle.Pause(true);
-        Debug.Log("invisible fired");
     }
     void OnBecameVisible()
     {
         particle.Play(true);
-        Debug.Log("visible fired");
     }
 
 }

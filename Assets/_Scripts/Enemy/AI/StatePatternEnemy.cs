@@ -139,7 +139,7 @@ public class StatePatternEnemy : MonoBehaviour
 
     private void Active()
     {
-        IsAlive = true;
+        IsActive = true;
         navMeshAgent.speed = _normalSpeed;
         currentState = patrolState;
         gameObject.SetActive(true);
@@ -147,7 +147,7 @@ public class StatePatternEnemy : MonoBehaviour
 
     private void DisActive()
     {
-        IsAlive = false;
+        IsActive = false;
         navMeshAgent.speed = _fastSpeed;
         DamageHandler.ResetHP();
         currentState.ToPatrolState();

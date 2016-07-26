@@ -63,16 +63,18 @@ public class PatrolState : IEnemyState
     private void Patrol()
     {
         enemy.meshRendererFlag.material.color = Color.green;
-        enemy.navMeshAgent.destination = enemy.wayPoints[nextWayPoint].position;
+        var next = enemy.IsActive ? enemy.wayPoints[nextWayPoint] : enemy.wayPoints[0];
+        enemy.navMeshAgent.destination = next.position;
         enemy.navMeshAgent.Resume();
 
         if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance && !enemy.navMeshAgent.pathPending)
         {
             nextWayPoint = (nextWayPoint + 1) % enemy.wayPoints.Length;
-            if (!enemy.IsActive && nextWayPoint == 1)
+            if (nextWayPoint == 1)
             {
                 enemy.gameObject.SetActive(false);
             }
         }
      }
+
 }
