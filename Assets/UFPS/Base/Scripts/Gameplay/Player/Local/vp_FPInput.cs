@@ -111,7 +111,7 @@ public class vp_FPInput : MonoBehaviour
             if (ev.isKey)
             {
                 currentKey = ev.keyCode;
-                if (currentKey.ToString() == "Space")
+                if (currentKey.ToString() == "10")
                 {
                     atkPressed = true;
                     msg = "\n atk pressed!!!";
@@ -158,7 +158,7 @@ public class vp_FPInput : MonoBehaviour
         if (okB)
             return;
 
-        if (Input.GetKey(KeyCode.N))
+        if (Input.GetKey(KeyCode.JoystickButton1))
         {
             msg = "\n defense pressed!!!";
             coroutineB = StartCoroutine(CoDectectB());
