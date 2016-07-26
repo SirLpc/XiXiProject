@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class EnemyDamageHandler : vp_DamageHandler
 {
@@ -17,6 +16,11 @@ public class EnemyDamageHandler : vp_DamageHandler
     {
         _enemy = GetComponent<StatePatternEnemy>();
         _colliders = GetComponentsInChildren<Collider>();
+    }
+
+    public void ResetHP()
+    {
+        m_CurrentHealth = MaxHealth;
     }
 
     /// <summary>

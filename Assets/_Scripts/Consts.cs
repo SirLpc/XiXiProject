@@ -26,6 +26,7 @@ public class Consts
     #region Player fields
 
     public const float AniDefenseDuration = 1f;
+    public const string PlayerTag = "Player";
 
     #endregion
 

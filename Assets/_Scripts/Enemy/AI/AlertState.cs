@@ -19,11 +19,6 @@ public class AlertState : IEnemyState
         Search();
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-
-    }
-
     public void ToPatrolState()
     {
         enemy.currentState = enemy.patrolState;

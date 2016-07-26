@@ -16,14 +16,11 @@ public class SAHurtState : IEnemyState
         Hold();
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-
-    }
-
     public void ToPatrolState()
     {
-
+        enemy.currentState = enemy.patrolState;
+        enemy.anim.SetBool(Consts.AniIsChase, false);
+        enemy.anim.SetBool(Consts.AniIsInAttack, false);
     }
 
     public void ToAlertState()

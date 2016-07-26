@@ -18,15 +18,6 @@ public class PatrolState : IEnemyState
         Patrol();
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("on trigger enter fired");
-            ToAlertState();
-        }
-    }
-
     public void ToPatrolState()
     {
         Debug.Log("Can't transition to same state");
@@ -57,6 +48,9 @@ public class PatrolState : IEnemyState
 
     private void Look()
     {
+        if (!enemy.IsActive)
+            return;
+
         RaycastHit hit;
         //Debug.DrawRay(enemy.eyes.transform.position, enemy.eyes.transform.forward * enemy.sightRange, Color.blue,0.5f );
         if (Physics.Raycast(enemy.eyes.transform.position, enemy.eyes.transform.forward, out hit, enemy.sightRange) && hit.collider.CompareTag("Player"))
@@ -66,7 +60,7 @@ public class PatrolState : IEnemyState
         }
     }
 
-    void Patrol()
+    private void Patrol()
     {
         enemy.meshRendererFlag.material.color = Color.green;
         enemy.navMeshAgent.destination = enemy.wayPoints[nextWayPoint].position;
@@ -75,7 +69,10 @@ public class PatrolState : IEnemyState
         if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance && !enemy.navMeshAgent.pathPending)
         {
             nextWayPoint = (nextWayPoint + 1) % enemy.wayPoints.Length;
-
+            if (!enemy.IsActive && nextWayPoint == 1)
+            {
+                enemy.gameObject.SetActive(false);
+            }
         }
      }
 }

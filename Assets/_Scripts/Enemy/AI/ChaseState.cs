@@ -15,18 +15,15 @@ public class ChaseState : IEnemyState
 
     public void UpdateState()
     {
-        Look();
+        //Now always chase once discovered player until out of boundary.
+        //Look();
         Chase();
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-
     }
 
     public void ToPatrolState()
     {
-
+        enemy.currentState = enemy.patrolState;
+        enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 
     public void ToAlertState()
