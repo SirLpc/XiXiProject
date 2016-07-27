@@ -75,7 +75,7 @@ public class vp_FPInput : MonoBehaviour
 		if (!m_AllowGameplayInput)
 			return;
 
-#if UNITY_ANDROID
+#if !UNITY_ANDROID
         VR_InputMove();
         VR_InputAttack();
         VR_InputDefense();
