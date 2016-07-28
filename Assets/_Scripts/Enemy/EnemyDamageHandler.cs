@@ -45,7 +45,7 @@ public class EnemyDamageHandler : vp_DamageHandler
         {
             ToChaseStateIfNeed();
 
-            if (!PlayerController.Instance.IsInSpecialAttack)
+            if (!PlayerController.Instance.SpecialAttackEffectived)
                 PlayHurtAniIfNeed();
             else
                 _enemy.currentState.ToSAHurtState();

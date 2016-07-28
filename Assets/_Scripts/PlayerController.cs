@@ -6,10 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _defenseGap = 4f;
     [SerializeField] private GameObject bulletBase;
-    [SerializeField] private float _specialAttackBearGap = 1;
     [SerializeField] private float _specialAttackGap = 7;
     [SerializeField] private float _specialAttackEffectiveTime = 2;
-    //[SerializeField] private CharacterController _characterController;
 
     public static PlayerController Instance = null;
     public vp_FPPlayerDamageHandler DamangeHandler { get; private set; }
@@ -19,9 +17,9 @@ public class PlayerController : MonoBehaviour
     public bool IsInDefense { get; private set; }
     private float _lastDefenseTime;
 
-    public bool IsInSpecialAttack { get; private set; }
-    public float SpecialAttackBearFrame { get { return _specialAttackBearGap; } }
+    public bool SpecialAttackEffectived { get; private set; }
     private float _lastSpecialAttackTime;
+    private Coroutine _saCoroutine;
 
     void Awake()
     {
@@ -62,44 +60,50 @@ public class PlayerController : MonoBehaviour
     {
         if (_handsomegunProperty == null) return;
 
-        if (IsInSpecialAttack) return;
+        if (_saCoroutine != null) return;
 
         if (Time.time - _lastSpecialAttackTime < _specialAttackGap)
             return;
 
-        IsInSpecialAttack = true;
+        SpecialAttackEffectived = false;
         _lastSpecialAttackTime = Time.time;
         _handsomegunProperty.PlayAnimation(_handsomegunProperty.SpecailAttackClip.name);
-        StartCoroutine(CoDetectSpecialAttack());
+        _saCoroutine = StartCoroutine(CoDetectSpecialAttack());
+    }
+
+    public void ShutSpecialAttack()
+    {
+        if (_saCoroutine == null)
+            return;
+
+        StopCoroutine(_saCoroutine);
+        _saCoroutine = null;
     }
 
     private IEnumerator CoDetectSpecialAttack()
     {
-        var counter = 0f;
-        while (counter < _specialAttackEffectiveTime)
-        {
-            counter += Time.deltaTime;
-            if (!vp_FPInput.DetectCancelInputSpecialAttack())
-            {
-                yield return null;
-            }
-            else
-            {
-                IsInSpecialAttack = false;
-                _handsomegunProperty.StopAnimation();
-                yield break;
-            }
-        }
+        //var counter = 0f;
+        //while (counter < _specialAttackEffectiveTime)
+        //{
+        //    counter += Time.deltaTime;
+        //    if (!vp_FPInput.DetectCancelInputSpecialAttack())
+        //    {
+        //        yield return null;
+        //    }
+        //    else
+        //    {
+        //        IsInSpecialAttack = false;
+        //        _handsomegunProperty.StopAnimation();
+        //        yield break;
+        //    }
+        //}
+
+        yield return new WaitForSeconds(_specialAttackEffectiveTime);
+
+        SpecialAttackEffectived = true;
 
         _handsomegunProperty.Shooter.SpecialAttackFire();
 
-        //_characterController.Move(transform.forward * -1 * 3);
-
-        //不能马上结束，要等玩家抬起鼠标后才行，不然很别扭
-        while (vp_FPInput.DetectCancelInputSpecialAttack())
-        {
-            yield return null;
-        }
         StartCoroutine(CoClearSpecialAttack());
     }
 
@@ -107,7 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.8f);
 
-        IsInSpecialAttack = false;
+        SpecialAttackEffectived = false;
     }
 
 }

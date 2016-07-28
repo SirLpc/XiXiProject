@@ -53,9 +53,6 @@ public class vp_FPInput : MonoBehaviour
 	public bool MouseAcceleration { get { return m_FPCamera.MouseAcceleration; } set { m_FPCamera.MouseAcceleration = value; } }
 	public float MouseAccelerationThreshold { get { return m_FPCamera.MouseAccelerationThreshold; } set { m_FPCamera.MouseAccelerationThreshold = value; } }
 
-    private Coroutine coroutineA, coroutineB;
-    private bool okA, okB;
-
 	/// <summary>
 	/// 
 	/// </summary>
@@ -79,6 +76,7 @@ public class vp_FPInput : MonoBehaviour
         VR_InputMove();
         VR_InputAttack();
         VR_InputDefense();
+        VR_InputSpecialAttack();
 #else
         // interaction
         //InputInteract();
@@ -92,9 +90,9 @@ public class vp_FPInput : MonoBehaviour
 		// handle input for weapons
 		InputAttack();
 		InputZoom();
+        InputSpecialAttack();
 #endif
 
-        InputSpecialAttack();
         InputReload();
         InputSetWeapon();
     }
@@ -102,6 +100,7 @@ public class vp_FPInput : MonoBehaviour
     private KeyCode currentKey;
     private Event ev;
     private bool atkPressed = false;
+    private bool saPressed = false;
     private string msg = string.Empty;
     protected void OnGUI()
     {
@@ -115,6 +114,11 @@ public class vp_FPInput : MonoBehaviour
                 {
                     atkPressed = true;
                     msg = "\n atk pressed!!!";
+                }
+                if (currentKey.ToString() == "menu")
+                {
+                    saPressed = true;
+                    msg = "\n sa pressed!!!";
                 }
             }
         }
@@ -130,6 +134,7 @@ public class vp_FPInput : MonoBehaviour
 
         Player.InputMoveVector.Set(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
     }
+
     private void VR_InputAttack()
     {
         // TIP: uncomment this to prevent player from attacking while running
@@ -141,28 +146,32 @@ public class vp_FPInput : MonoBehaviour
         //if (!Screen.lockCursor)
         //    return;
 
-        if (okA)
-            return;
-
         if (atkPressed)
-        {
-            coroutineA = StartCoroutine(CoDectectA());
-        }
+            Player.Attack.TryStart();
         else
             Player.Attack.TryStop();
 
         atkPressed = false;
     }
+
     private void VR_InputDefense()
     {
-        if (okB)
-            return;
-
         if (Input.GetKey(KeyCode.JoystickButton1))
         {
             msg = "\n defense pressed!!!";
-            coroutineB = StartCoroutine(CoDectectB());
+            PlayerController.Instance.TryDefense();
         }
+    }
+
+    private void VR_InputSpecialAttack()
+    {
+        if (saPressed)
+        {
+            msg = "\n special attack pressed!!!";
+            PlayerController.Instance.TrySpecialAttack();
+        }
+
+        saPressed = false;
     }
 #endregion
 
@@ -172,12 +181,10 @@ public class vp_FPInput : MonoBehaviour
     /// </summary>
     protected virtual void InputInteract()
 	{
-
 		if(vp_Input.GetButtonDown("Interact"))
 			Player.Interact.TryStart();
 		else
 			Player.Interact.TryStop();
-
 	}
 
 
@@ -269,26 +276,14 @@ public class vp_FPInput : MonoBehaviour
 	/// </summary>
 	protected virtual void InputZoom()
 	{
-	    if (okB)
-	        return;
-
 	    if (vp_Input.GetButton("Zoom"))
-	        //PlayerController.Instance.TryDefense();
-	        coroutineB = StartCoroutine(CoDectectB());
+	        PlayerController.Instance.TryDefense();
 
 		//if (vp_Input.GetButton("Zoom"))
 		//	Player.Zoom.TryStart();
 		//else
 		//	Player.Zoom.TryStop();
 	}
-
-    private IEnumerator CoDectectB()
-    {
-        okB = true;
-        yield return new WaitForSeconds(PlayerController.Instance.SpecialAttackBearFrame);
-        okB = false;
-        PlayerController.Instance.TryDefense();
-    } 
 
 
 	/// <summary>
@@ -311,49 +306,18 @@ public class vp_FPInput : MonoBehaviour
 		if (!Screen.lockCursor)
 			return;
 
-	    if (okA)
-	        return;
-
 	    if (vp_Input.GetButton("Attack"))
-	        //Player.Attack.TryStart();
-	        coroutineA = StartCoroutine(CoDectectA());
+	        Player.Attack.TryStart();
         else
             Player.Attack.TryStop();
     }
 
-    private IEnumerator CoDectectA()
-    {
-        okA = true;
-        yield return new WaitForSeconds(PlayerController.Instance.SpecialAttackBearFrame);
-        Player.Attack.TryStart();
-        StartCoroutine(CoTryStop());
-    }
-
-    private IEnumerator CoTryStop()
-    {
-        yield return null;
-        okA = false;
-    } 
-
 
     private void InputSpecialAttack()
     {
-        if (!okA || !okB)
-            return;
-
-        okA = okB = false;
-
-        StopCoroutine(coroutineA);
-        StopCoroutine(coroutineB);
-
-        PlayerController.Instance.TrySpecialAttack();
+        if (Input.GetKeyDown(KeyCode.M))
+            PlayerController.Instance.TrySpecialAttack();
     }
-
-    public static bool DetectCancelInputSpecialAttack()
-    {
-        return vp_Input.GetButtonUp("Attack") || vp_Input.GetButtonUp("Zoom");
-    }
-
 
     /// <summary>
     /// when the reload button is pressed, broadcasts a message
@@ -362,10 +326,8 @@ public class vp_FPInput : MonoBehaviour
     /// </summary>
     protected virtual void InputReload()
 	{
-
 		if (vp_Input.GetButtonDown("Reload"))
 			Player.Reload.TryStart();
-		
 	}
 
 	
