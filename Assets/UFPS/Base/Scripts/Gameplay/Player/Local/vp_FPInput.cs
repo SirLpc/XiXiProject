@@ -72,7 +72,7 @@ public class vp_FPInput : MonoBehaviour
 		if (!m_AllowGameplayInput)
 			return;
 
-#if UNITY_ANDROID
+#if !UNITY_ANDROID
         VR_InputMove();
         VR_InputAttack();
         VR_InputDefense();
@@ -115,7 +115,7 @@ public class vp_FPInput : MonoBehaviour
                     atkPressed = true;
                     msg = "\n atk pressed!!!";
                 }
-                if (currentKey.ToString() == "menu")
+                if (currentKey.ToString() == "Menu"||currentKey.ToString() == "menu")
                 {
                     saPressed = true;
                     msg = "\n sa pressed!!!";
@@ -197,8 +197,8 @@ public class vp_FPInput : MonoBehaviour
         // NOTES: you may also use 'GetAxis', but that will add smoothing
         // to the input from both Ultimate FPS and from Unity, and might
         // require some tweaking in order not to feel laggy
-
-        Player.InputMoveVector.Set(new Vector2(vp_Input.GetAxisRaw("Horizontal"), vp_Input.GetAxisRaw("Vertical")));
+        Vector2 dir = new Vector2(vp_Input.GetAxisRaw("Horizontal"), vp_Input.GetAxisRaw("Vertical"));
+        Player.InputMoveVector.Set(dir);
     }
 
 

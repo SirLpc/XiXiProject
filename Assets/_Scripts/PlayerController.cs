@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool SpecialAttackEffectived { get; private set; }
     private float _lastSpecialAttackTime;
     private Coroutine _saCoroutine;
+    private Transform _transform;
 
     void Awake()
     {
@@ -28,11 +29,20 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         DamangeHandler = GetComponent<vp_FPPlayerDamageHandler>();
         _handsomegunProperty = GetComponentInChildren<HandsomegunProperty>();
+        _transform = transform;
     }
 
     public void GiveBullets()
     {
         bulletBase.gameObject.SetActive(true);
+    }
+
+    public void ApplyHeadRotation(Quaternion rot, bool local)
+    {
+        if (local)
+            _transform.localRotation = rot;
+        else
+            _transform.rotation = rot;
     }
 
     public void TryDefense()
