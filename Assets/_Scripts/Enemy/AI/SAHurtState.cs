@@ -54,7 +54,7 @@ public class SAHurtState : IEnemyState
         var info = enemy.anim.GetCurrentAnimatorStateInfo(0);
         if (!info.IsName("BaseLayer.hurt2"))
             return;
-        if(info.normalizedTime >= 0.99)
+        if(info.normalizedTime >= 0.95)
         {
             ToChaseState();
         }

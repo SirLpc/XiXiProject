@@ -70,7 +70,7 @@ public class PatrolState : IEnemyState
         if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance && !enemy.navMeshAgent.pathPending)
         {
             nextWayPoint = (nextWayPoint + 1) % enemy.wayPoints.Length;
-            if (nextWayPoint == 1)
+            if (!enemy.IsActive && nextWayPoint == 1)
             {
                 enemy.gameObject.SetActive(false);
             }

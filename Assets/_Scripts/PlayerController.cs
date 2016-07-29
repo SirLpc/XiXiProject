@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.8f);
 
         SpecialAttackEffectived = false;
+        _saCoroutine = null;
     }
 
 }
