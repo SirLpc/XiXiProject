@@ -193,6 +193,14 @@ public class vp_FPInput : MonoBehaviour
 	/// </summary>
 	protected virtual void InputMove()
 	{
+	    //var h = vp_Input.GetAxisRaw("Vertical");
+     //   var v = vp_Input.GetAxisRaw("Horizontal");
+     //   float a = 360 - Camera.main.transform.rotation.eulerAngles.y;
+     //   a *= Mathf.Deg2Rad;
+
+     //   var hh = Mathf.Cos(a) * h - Mathf.Sin(a) * v;
+     //   var vv = Mathf.Sin(a) * h + Mathf.Cos(a) * v;
+     //   Vector2 dir = new Vector2(hh, vv);
 
         // NOTES: you may also use 'GetAxis', but that will add smoothing
         // to the input from both Ultimate FPS and from Unity, and might

@@ -32,99 +32,120 @@ using UnityEngine;
 /// the rotation is applied from where the positional offset is applied.  Use the
 /// #trackRotation and #trackPosition properties in this case.
 [AddComponentMenu("GoogleVR/GvrHead")]
-public class GvrHead : MonoBehaviour {
-  /// Determines whether to apply the user's head rotation to this gameobject's
-  /// orientation.  True means to update the gameobject's orientation with the
-  /// user's head rotation, and false means don't modify the gameobject's orientation.
-  public bool trackRotation = true;
+public class GvrHead : MonoBehaviour
+{
+    /// Determines whether to apply the user's head rotation to this gameobject's
+    /// orientation.  True means to update the gameobject's orientation with the
+    /// user's head rotation, and false means don't modify the gameobject's orientation.
+    public bool trackRotation = true;
 
-  /// Determines whether to apply ther user's head offset to this gameobject's
-  /// position.  True means to update the gameobject's position with the user's head offset,
-  /// and false means don't modify the gameobject's position.
-  public bool trackPosition = true;
+    /// Determines whether to apply ther user's head offset to this gameobject's
+    /// position.  True means to update the gameobject's position with the user's head offset,
+    /// and false means don't modify the gameobject's position.
+    public bool trackPosition = true;
 
-  /// The user's head motion will be applied in this object's reference frame
-  /// instead of the head object's parent.  A good use case is for head-based
-  /// steering.  Normally, turning the parent object (i.e. the body or vehicle)
-  /// towards the direction the user is looking would carry the head along with it,
-  /// thus creating a positive feedback loop.  Use an external target object as a
-  /// fixed point of reference for the direction the user is looking.  Often, the
-  /// grandparent or higher ancestor is a suitable target.
-  public Transform target;
+    /// The user's head motion will be applied in this object's reference frame
+    /// instead of the head object's parent.  A good use case is for head-based
+    /// steering.  Normally, turning the parent object (i.e. the body or vehicle)
+    /// towards the direction the user is looking would carry the head along with it,
+    /// thus creating a positive feedback loop.  Use an external target object as a
+    /// fixed point of reference for the direction the user is looking.  Often, the
+    /// grandparent or higher ancestor is a suitable target.
+    public Transform target;
 
-  /// Determines whether the head tracking is applied during `LateUpdate()` or
-  /// `Update()`.  The default is false, which means it is applied during `LateUpdate()`
-  /// to reduce latency.
-  ///
-  /// However, some scripts may need to use the camera's direction to affect the gameplay,
-  /// e.g by casting rays or steering a vehicle, during the `LateUpdate()` phase.
-  /// This can cause an annoying jitter because Unity, during this `LateUpdate()`
-  /// phase, will update the head object first on some frames but second on others.
-  /// If this is the case for your game, try switching the head to apply head tracking
-  /// during `Update()` by setting this to true.
-  public bool updateEarly = false;
+    /// Determines whether the head tracking is applied during `LateUpdate()` or
+    /// `Update()`.  The default is false, which means it is applied during `LateUpdate()`
+    /// to reduce latency.
+    ///
+    /// However, some scripts may need to use the camera's direction to affect the gameplay,
+    /// e.g by casting rays or steering a vehicle, during the `LateUpdate()` phase.
+    /// This can cause an annoying jitter because Unity, during this `LateUpdate()`
+    /// phase, will update the head object first on some frames but second on others.
+    /// If this is the case for your game, try switching the head to apply head tracking
+    /// during `Update()` by setting this to true.
+    public bool updateEarly = false;
 
-  /// Returns a ray based on the heads position and forward direction, after making
-  /// sure the transform is up to date.  Use to raycast into the scene to determine
-  /// objects that the user is looking at.
-  public Ray Gaze {
-    get {
-      UpdateHead();
-      return new Ray(transform.position, transform.forward);
-    }
-  }
-
-  public delegate void HeadUpdatedDelegate(GameObject head);
-
-  /// Called after the head pose has been updated with the latest sensor data.
-  public event HeadUpdatedDelegate OnHeadUpdated;
-
-  void Awake() {
-    GvrViewer.Create();
-  }
-
-  private bool updated;
-
-  void Update() {
-    updated = false;  // OK to recompute head pose.
-    if (updateEarly) {
-      UpdateHead();
-    }
-  }
-
-  // Normally, update head pose now.
-  void LateUpdate() {
-    UpdateHead();
-  }
-
-  // Compute new head pose.
-  private void UpdateHead() {
-    if (updated) {  // Only one update per frame, please.
-      return;
-    }
-    updated = true;
-    GvrViewer.Instance.UpdateState();
-
-    if (trackRotation) {
-      var rot = GvrViewer.Instance.HeadPose.Orientation;
-      if (target == null) {
-        transform.localRotation = rot;
-      } else {
-        transform.rotation = target.rotation * rot;
-      }
+    /// Returns a ray based on the heads position and forward direction, after making
+    /// sure the transform is up to date.  Use to raycast into the scene to determine
+    /// objects that the user is looking at.
+    public Ray Gaze
+    {
+        get
+        {
+            UpdateHead();
+            return new Ray(transform.position, transform.forward);
+        }
     }
 
-    if (trackPosition) {
-      Vector3 pos = GvrViewer.Instance.HeadPose.Position;
-      if (target == null) {
-        transform.localPosition = pos;
-      } else {
-        transform.position = target.position + target.rotation * pos;
-      }
+    public delegate void HeadUpdatedDelegate(GameObject head);
+
+    /// Called after the head pose has been updated with the latest sensor data.
+    public event HeadUpdatedDelegate OnHeadUpdated;
+
+    void Awake()
+    {
+        GvrViewer.Create();
     }
 
-    if (OnHeadUpdated != null) {
-      OnHeadUpdated(gameObject);
+    private bool updated;
+
+    void Update()
+    {
+        updated = false;  // OK to recompute head pose.
+        if (updateEarly)
+        {
+            UpdateHead();
+        }
     }
-  }
+
+    // Normally, update head pose now.
+    void LateUpdate()
+    {
+        UpdateHead();
+    }
+
+    // Compute new head pose.
+    private void UpdateHead()
+    {
+        if (updated)
+        {  // Only one update per frame, please.
+            return;
+        }
+        updated = true;
+        GvrViewer.Instance.UpdateState();
+
+        if (trackRotation)
+        {
+            var rot = GvrViewer.Instance.HeadPose.Orientation;
+            if (target == null)
+            {
+                //transform.localRotation = rot;
+                Vector3 v = rot.eulerAngles;
+                transform.localRotation = Quaternion.Euler(v.x, 0, v.z);
+                transform.parent.localRotation = Quaternion.Euler(0, v.y, 0);
+            }
+            else
+            {
+                transform.rotation = target.rotation * rot;
+            }
+        }
+
+        if (trackPosition)
+        {
+            Vector3 pos = GvrViewer.Instance.HeadPose.Position;
+            if (target == null)
+            {
+                transform.localPosition = pos;
+            }
+            else
+            {
+                transform.position = target.position + target.rotation * pos;
+            }
+        }
+
+        if (OnHeadUpdated != null)
+        {
+            OnHeadUpdated(gameObject);
+        }
+    }
 }
