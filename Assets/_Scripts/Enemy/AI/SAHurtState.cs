@@ -50,6 +50,7 @@ public class SAHurtState : IEnemyState
     private void Hold()
     {
         enemy.meshRendererFlag.material.color = Color.black;
+        enemy.navMeshAgent.Stop();
 
         var info = enemy.anim.GetCurrentAnimatorStateInfo(0);
         if (!info.IsName("BaseLayer.hurt2"))

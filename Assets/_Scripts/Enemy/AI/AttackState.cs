@@ -62,7 +62,7 @@ public class AttackState : IEnemyState
 
         lastAttackTime = Time.time;
         //这只是个临时解决方案，不知道为什么，会在脱攻距离后，多攻击两下
-        if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
+        if (CheckDistanceToChase())
         {
             ToChaseState();
             return;
@@ -81,17 +81,21 @@ public class AttackState : IEnemyState
     {
         enemy.meshRendererFlag.material.color = Color.magenta;
 
-        if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
+        if (CheckDistanceToChase())
         {
             ToChaseState();
             return;
         }
-        enemy.transform.LookAt(enemy.chaseTarget);
+        Vector3 dir = new Vector3(
+            enemy.chaseTarget.position.x,
+            enemy.myTransform.position.y,
+            enemy.chaseTarget.position.z);
+        enemy.transform.LookAt(dir);
     }
 
     public void OnAttackComplete()
     {
-        if (Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position) > enemy.navMeshAgent.stoppingDistance)
+        if (CheckDistanceToChase())
         {
             ToChaseState();
             return;
@@ -110,7 +114,16 @@ public class AttackState : IEnemyState
             enemy.DamageHandler.DefenseDamage();
             enemy.anim.SetBool(Consts.AniIsChase, true);
         }
+    }
 
+    private bool CheckDistanceToChase()
+    {
+        float distance = Vector3.Distance(enemy.transform.position, enemy.chaseTarget.transform.position);
+        if (distance > enemy.navMeshAgent.stoppingDistance + 1f)
+        {
+            return true;
+        }
+        return false;
     }
 
 

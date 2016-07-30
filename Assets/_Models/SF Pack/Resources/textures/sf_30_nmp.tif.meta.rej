@@ -1,0 +1,10 @@
+diff a/Assets/_Models/SF Pack/Resources/textures/sf_30_nmp.tif.meta b/Assets/_Models/SF Pack/Resources/textures/sf_30_nmp.tif.meta	(rejected hunks)
+@@ -25,7 +25,7 @@
+   cubemapConvolutionExponent: 1.5
+   seamlessCubemap: 0
+   textureFormat: -1
+-  maxTextureSize: 1024
++  maxTextureSize: 256
+   textureSettings:
+     filterMode: -1
+     aniso: -1

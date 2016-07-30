@@ -78,10 +78,9 @@ public class ChaseState : IEnemyState
 
         enemy.navMeshAgent.Resume();
 
-        if (enemy.navMeshAgent.remainingDistance < enemy.navMeshAgent.stoppingDistance)
+        if (enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance)
         {
             ToAttackState();
-            return;
         }
 
     }

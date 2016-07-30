@@ -1,0 +1,12 @@
+diff a/Assets/_Models/SF Pack/Resources/textures/sf_4.tif.meta b/Assets/_Models/SF Pack/Resources/textures/sf_4.tif.meta	(rejected hunks)
+@@ -24,8 +24,8 @@
+   cubemapConvolutionSteps: 7
+   cubemapConvolutionExponent: 1.5
+   seamlessCubemap: 0
+-  textureFormat: -1
+-  maxTextureSize: 1024
++  textureFormat: 46
++  maxTextureSize: 256
+   textureSettings:
+     filterMode: -1
+     aniso: -1

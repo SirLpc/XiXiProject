@@ -18,6 +18,8 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public Transform chaseTarget;
     [HideInInspector]
+    public Transform myTransform;
+    [HideInInspector]
     public IEnemyState currentState;
     [HideInInspector]
     public ChaseState chaseState;
