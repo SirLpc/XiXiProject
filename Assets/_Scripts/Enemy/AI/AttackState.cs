@@ -88,7 +88,7 @@ public class AttackState : IEnemyState
         }
         Vector3 dir = new Vector3(
             enemy.chaseTarget.position.x,
-            enemy.myTransform.position.y,
+            enemy._myTransform.position.y,
             enemy.chaseTarget.position.z);
         enemy.transform.LookAt(dir);
     }

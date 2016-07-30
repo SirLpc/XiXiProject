@@ -18,7 +18,7 @@ public class StatePatternEnemy : MonoBehaviour
     [HideInInspector]
     public Transform chaseTarget;
     [HideInInspector]
-    public Transform myTransform;
+    public Transform _myTransform;
     [HideInInspector]
     public IEnemyState currentState;
     [HideInInspector]
@@ -67,6 +67,7 @@ public class StatePatternEnemy : MonoBehaviour
         DamageHandler = GetComponent<EnemyDamageHandler>();
 
         _spawner = GetComponentInParent<EnemySpawner>();
+        _myTransform = transform;
     }
 
     private void Start()
