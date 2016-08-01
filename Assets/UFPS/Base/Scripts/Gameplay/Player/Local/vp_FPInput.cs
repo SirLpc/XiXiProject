@@ -72,7 +72,7 @@ public class vp_FPInput : MonoBehaviour
 		if (!m_AllowGameplayInput)
 			return;
 
-#if !UNITY_ANDROID
+#if UNITY_ANDROID
         VR_InputMove();
         VR_InputAttack();
         VR_InputDefense();
@@ -101,6 +101,7 @@ public class vp_FPInput : MonoBehaviour
     private Event ev;
     private bool atkPressed = false;
     private bool saPressed = false;
+	private bool defPressed = false;
     private string msg = string.Empty;
     protected void OnGUI()
     {
@@ -110,12 +111,17 @@ public class vp_FPInput : MonoBehaviour
             if (ev.isKey)
             {
                 currentKey = ev.keyCode;
-                if (currentKey.ToString() == "10")
+				if (currentKey.ToString() == Consts.InputAttackKeyCode)
                 {
                     atkPressed = true;
                     msg = "\n atk pressed!!!";
                 }
-                if (currentKey.ToString() == "Menu"||currentKey.ToString() == "menu")
+				if (currentKey.ToString() == Consts.InputDefenseKeyCode)
+				{
+					defPressed = true;
+					msg = "\n sa pressed!!!";
+				}
+				if (currentKey.ToString() == Consts.InputSpecialAttackKeyCode)
                 {
                     saPressed = true;
                     msg = "\n sa pressed!!!";
@@ -156,11 +162,14 @@ public class vp_FPInput : MonoBehaviour
 
     private void VR_InputDefense()
     {
-        if (Input.GetKey(KeyCode.JoystickButton1))
+		//if (Input.GetKey(KeyCode.JoystickButton1))
+		if (defPressed)
         {
             msg = "\n defense pressed!!!";
             PlayerController.Instance.TryDefense();
         }
+
+		defPressed = false;
     }
 
     private void VR_InputSpecialAttack()
@@ -205,7 +214,7 @@ public class vp_FPInput : MonoBehaviour
         // NOTES: you may also use 'GetAxis', but that will add smoothing
         // to the input from both Ultimate FPS and from Unity, and might
         // require some tweaking in order not to feel laggy
-        Vector2 dir = new Vector2(vp_Input.GetAxisRaw("Horizontal"), vp_Input.GetAxisRaw("Vertical"));
+		Vector2 dir = new Vector2(vp_Input.GetAxisRaw(Consts.InputHorizontal), vp_Input.GetAxisRaw(Consts.InputVertical));
         Player.InputMoveVector.Set(dir);
     }
 

@@ -31,4 +31,19 @@ public class Consts
     #endregion
 
 
+	#region Input fields
+
+	public const string IsInputOkKey = "IsInputOkKey";
+	public const string InputAttackKey = "InputAttackKey";
+	public const string InputDefenseKey = "InputDefenseKey";
+	public const string InputSpecialAttackKey = "InputSpecialAttackKey";
+
+	public static string InputAttackKeyCode;
+	public static string InputDefenseKeyCode;
+	public static string InputSpecialAttackKeyCode;
+	public const string InputHorizontal = "Horizontal";
+	public const string InputVertical = "Vertical";
+
+	#endregion
+
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System.Xml;
 
@@ -37,12 +38,9 @@ public class PlayerController : MonoBehaviour
         bulletBase.gameObject.SetActive(true);
     }
 
-    public void ApplyHeadRotation(Quaternion rot, bool local)
+    public void StartControl()
     {
-        if (local)
-            _transform.localRotation = rot;
-        else
-            _transform.rotation = rot;
+		GetComponent<vp_FPInput> ().enabled = true;
     }
 
     public void TryDefense()
