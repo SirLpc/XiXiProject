@@ -578,6 +578,7 @@ public class vp_FPController : vp_Component
 		// do some prediction in order to detect blocking and deflect forces on collision
 		m_PredictedPos = Transform.position + vp_MathUtility.NaNSafeVector3(m_MoveDirection * Delta * Time.timeScale);
 
+        //todo 另一个可能的移动 --lpc
 		// --- move the charactercontroller ---
 
 		// ride along with movable objects
@@ -1344,6 +1345,7 @@ public class vp_FPController : vp_Component
 	/// </summary>
 	protected virtual void OnMessage_Move(Vector3 direction)
 	{
+        //todo 人物的移动好像在这里 --lpc
 		CharacterController.Move(direction);
 	}
 
