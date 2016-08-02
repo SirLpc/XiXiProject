@@ -48,5 +48,6 @@ public class UIViewCtr : MonoBehaviour
 	{
 		yield return new WaitForSeconds (seconds);
 		_msgText.text = string.Empty;
+		StopAllCoroutines ();
 	}
 }

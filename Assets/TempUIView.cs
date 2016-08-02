@@ -1,23 +1,14 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
-public class WeaponUIView : MonoBehaviour
+public class TempUIView : MonoBehaviour 
 {
-	#region ===字段===
 
-    [SerializeField] private Text bulleText;
 	[SerializeField]
 	private Image saFiller, defFiller;
 
 	private GameObject saGo, defGo;
-
-    #endregion
-
-    #region ===属性===
-
-    #endregion
-
-    #region ===Unity事件=== 快捷键： Ctrl + Shift + M /Ctrl + Shift + Q  实现
 
 	void Awake()
 	{
@@ -25,10 +16,8 @@ public class WeaponUIView : MonoBehaviour
 		defGo = defFiller.transform.parent.gameObject;
 	}
 
-    private void Update()
-    {
-        bulleText.text = string.Format("{0}/∞", PlayerController.Instance.EventHandler.CurrentWeaponAmmoCount.Get());
-
+	void Update ()
+	{
 		var saPer = PlayerController.Instance.GetSACdPercent ();
 		var defPer = PlayerController.Instance.GetDefCdPercent ();
 		if (saPer >= 1) 
@@ -53,11 +42,7 @@ public class WeaponUIView : MonoBehaviour
 				defGo.gameObject.SetActive (true);
 			defFiller.fillAmount = defPer;
 		}
-    }
 
-    #endregion
+	}
 
-    #region ===方法===
-
-    #endregion
 }

@@ -158,24 +158,25 @@ public class vp_HitscanBullet : MonoBehaviour
 			    hit.collider.SendMessageUpwards(DamageMethodName, Damage, SendMessageOptions.DontRequireReceiver);
             else
             {
-                Debug.Log(hit.transform.position + "hit" + hit.point);
+				float dmg;
+				if (PlayerController.Instance.SpecialAttackEffectived) 
+				{
+					dmg = 50f;
+				}
                 //todo 1.7为头部判定高度，1.7以上为头    --lpc的标记
-                if (hit.point.y - hit.transform.position.y < 1.7f)
+				else if (hit.point.y - hit.transform.position.y < 1.7f)
                 {
-			        hit.collider.SendMessageUpwards(DamageMethodName, 10, SendMessageOptions.DontRequireReceiver);
+					dmg = 10f;
                 }
                 else
                 {
-			        hit.collider.SendMessageUpwards(DamageMethodName, 30, SendMessageOptions.DontRequireReceiver);
+					dmg = 30f;
                 }
+				hit.collider.SendMessageUpwards(DamageMethodName, dmg, SendMessageOptions.DontRequireReceiver);
+				TryDestroyImmediately ();
             }
 
             // prevent adding decals to objects based on layer
-            if (hit.transform.CompareTag(Consts.EnemyTag))
-            {
-                TryDestroy();
-                return;
-            }
             if (NoDecalOnTheseLayers.Length > 0)
 			{
 				foreach (int layer in NoDecalOnTheseLayers)
@@ -220,6 +221,13 @@ public class vp_HitscanBullet : MonoBehaviour
 
 	}
 
+	protected void TryDestroyImmediately()
+	{
+		if (this == null)
+			return;
+
+		vp_Utility.Destroy(gameObject);
+	}
 
 }
 

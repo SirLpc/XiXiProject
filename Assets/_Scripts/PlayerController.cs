@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine _saCoroutine;
     private Transform _transform;
 
+	private float _specialAttackGapUN, _defenseGapUN;
+
     void Awake()
     {
         Application.targetFrameRate = 45;
@@ -33,6 +35,9 @@ public class PlayerController : MonoBehaviour
         EventHandler = GetComponent<vp_FPPlayerEventHandler>();
         _handsomegunProperty = GetComponentInChildren<HandsomegunProperty>();
         _transform = transform;
+
+		_specialAttackGapUN = 1 / _specialAttackGap;
+		_defenseGapUN = 1 / _defenseGap;
     }
 
     public void GiveBullets()
@@ -59,6 +64,16 @@ public class PlayerController : MonoBehaviour
         IsInDefense = true;
         StartCoroutine(CoClearDefense());
     }
+
+	public float GetSACdPercent()
+	{
+		return (Time.time - _lastSpecialAttackTime) * _specialAttackGapUN;
+	}
+
+	public float GetDefCdPercent()
+	{
+		return (Time.time - _lastDefenseTime) * _defenseGapUN;
+	}
 
     private IEnumerator CoClearDefense()
     {
@@ -119,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator CoClearSpecialAttack()
     {
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1.0f);
 
         SpecialAttackEffectived = false;
         _saCoroutine = null;
