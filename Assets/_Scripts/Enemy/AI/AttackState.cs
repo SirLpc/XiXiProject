@@ -79,7 +79,7 @@ public class AttackState : IEnemyState
 
     private void Look()
     {
-        enemy.meshRendererFlag.material.color = Color.magenta;
+        //enemy.meshRendererFlag.material.color = Color.magenta;
 
         if (CheckDistanceToChase())
         {

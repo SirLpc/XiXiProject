@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance = null;
     public vp_FPPlayerDamageHandler DamangeHandler { get; private set; }
+    public vp_FPPlayerEventHandler EventHandler { get; private set; }
 
     private HandsomegunProperty _handsomegunProperty;
 
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
         Instance = this;
         DamangeHandler = GetComponent<vp_FPPlayerDamageHandler>();
+        EventHandler = GetComponent<vp_FPPlayerEventHandler>();
         _handsomegunProperty = GetComponentInChildren<HandsomegunProperty>();
         _transform = transform;
     }

@@ -68,6 +68,8 @@ public class StatePatternEnemy : MonoBehaviour
 
         _spawner = GetComponentInParent<EnemySpawner>();
         _myTransform = transform;
+
+        meshRendererFlag.gameObject.SetActive(false);
     }
 
     private void Start()
