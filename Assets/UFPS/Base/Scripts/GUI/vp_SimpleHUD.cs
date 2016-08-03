@@ -93,16 +93,16 @@ public class vp_SimpleHUD : MonoBehaviour
 		GUI.Box(new Rect(10, Screen.height - 30, 100, 22), "Health: " + (int)(m_Player.Health.Get() * 100.0f) + "%");
 
 		// display a simple 'Ammo' HUD
-		GUI.Box(new Rect(Screen.width - 120, Screen.height - 30, 110, 22), "Ammo: " + m_Player.CurrentWeaponAmmoCount.Get() + " / " + m_Player.CurrentWeaponClipCount.Get());
+		//GUI.Box(new Rect(Screen.width - 120, Screen.height - 30, 110, 22), "Ammo: " + m_Player.CurrentWeaponAmmoCount.Get() + " / " + m_Player.CurrentWeaponClipCount.Get());
 
 		// show a message in the middle of the screen and fade it out
-		if (m_PickupMessage != null && m_MessageColor.a > 0.01f)
-		{
-			m_MessageColor = Color.Lerp(m_MessageColor, m_InvisibleColor, Time.deltaTime * 0.4f);
-			GUI.color = m_MessageColor;
-			GUI.Box(new Rect(200, 150, Screen.width - 400, Screen.height - 400), m_PickupMessage, MessageStyle);
-			GUI.color = Color.white;
-		}
+		//if (m_PickupMessage != null && m_MessageColor.a > 0.01f)
+		//{
+		//	m_MessageColor = Color.Lerp(m_MessageColor, m_InvisibleColor, Time.deltaTime * 0.4f);
+		//	GUI.color = m_MessageColor;
+		//	GUI.Box(new Rect(200, 150, Screen.width - 400, Screen.height - 400), m_PickupMessage, MessageStyle);
+		//	GUI.color = Color.white;
+		//}
 
 		// show a red glow along the screen edges when damaged
 		if (DamageFlashTexture != null && m_DamageFlashColor.a > 0.01f)
