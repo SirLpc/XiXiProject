@@ -1,7 +1,8 @@
-﻿<Properties StartupItem="XiXiProject.CSharp.Plugins.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UFPS\Base\Scripts\Gameplay\Player\Local\vp_FPInput.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Enemy\EnemyDamageHandler.cs">
     <Files>
+      <File FileName="Assets\_Scripts\Enemy\EnemyDamageHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\UFPS\Base\Scripts\Gameplay\Player\Local\vp_FPInput.cs" Line="1" Column="1" />
       <File FileName="Assets\UFPS\Base\Scripts\Gameplay\Player\Local\vp_FPController.cs" Line="1" Column="1" />
       <File FileName="Assets\GameCtr.cs" Line="1" Column="1" />
