@@ -32,6 +32,8 @@ public class AlertState : IEnemyState
 
     public void ToChaseState()
     {
+        enemy.anim.SetBool(Consts.AniIsChase, true);
+        enemy.anim.SetBool(Consts.AniIsInAttack, false);
         enemy.currentState = enemy.chaseState;
         searchTimer = 0f;
     }

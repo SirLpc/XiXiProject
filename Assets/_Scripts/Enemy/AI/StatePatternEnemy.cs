@@ -62,7 +62,7 @@ public class StatePatternEnemy : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         _normalSpeed = navMeshAgent.speed;
-        _fastSpeed = _normalSpeed*5f;
+        _fastSpeed = _normalSpeed*2f;
 
         DamageHandler = GetComponent<EnemyDamageHandler>();
 

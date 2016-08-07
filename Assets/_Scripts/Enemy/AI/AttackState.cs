@@ -30,7 +30,7 @@ public class AttackState : IEnemyState
     public void ToPatrolState()
     {
         enemy.currentState = enemy.patrolState;
-        enemy.anim.SetBool(Consts.AniIsChase, false);
+        //enemy.anim.SetBool(Consts.AniIsChase, false);
         enemy.anim.SetBool(Consts.AniIsInAttack, false);
     }
 

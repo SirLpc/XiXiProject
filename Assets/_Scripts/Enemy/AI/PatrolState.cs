@@ -26,7 +26,7 @@ public class PatrolState : IEnemyState
     public void ToAlertState()
     {
         enemy.currentState = enemy.alertState;
-        enemy.anim.SetBool(Consts.AniIsChase, false);
+        //enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 
     public void ToChaseState()
@@ -74,6 +74,13 @@ public class PatrolState : IEnemyState
             {
                 enemy.gameObject.SetActive(false);
             }
+        }
+
+        //用于解决在非激活状态下，划动回家的现象
+        if(!enemy.IsActive)
+        {
+            if (!enemy.anim.GetBool(Consts.AniIsChase))
+                enemy.anim.SetBool(Consts.AniIsChase, true);
         }
      }
 

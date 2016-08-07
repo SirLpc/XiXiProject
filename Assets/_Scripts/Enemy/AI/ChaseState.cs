@@ -23,13 +23,13 @@ public class ChaseState : IEnemyState
     public void ToPatrolState()
     {
         enemy.currentState = enemy.patrolState;
-        enemy.anim.SetBool(Consts.AniIsChase, false);
+        //enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 
     public void ToAlertState()
     {
         enemy.currentState = enemy.alertState;
-        enemy.anim.SetBool(Consts.AniIsChase, false);
+        //enemy.anim.SetBool(Consts.AniIsChase, false);
     }
 
     public void ToChaseState()

@@ -8,7 +8,10 @@ public class GameCtr : MonoBehaviour
 
 	private void Awake()
 	{
-		_inputSetter = GetComponent<VRInputSetter> ();
+        Application.targetFrameRate = 45;
+
+
+        _inputSetter = GetComponent<VRInputSetter> ();
 	}
 
 	private IEnumerator Start () 

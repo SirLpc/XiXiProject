@@ -28,8 +28,6 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 45;
-
         Instance = this;
         DamangeHandler = GetComponent<vp_FPPlayerDamageHandler>();
         EventHandler = GetComponent<vp_FPPlayerEventHandler>();
