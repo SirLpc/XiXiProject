@@ -70,12 +70,13 @@ public class StatePatternEnemy : MonoBehaviour
         _myTransform = transform;
 
         meshRendererFlag.gameObject.SetActive(false);
+
+        IsAlive = true;
     }
 
     private void Start()
     {
         currentState = patrolState;
-        IsAlive = true;
 
         _spawner.PlayerIn.AddListener(Active);
         _spawner.playerOut.AddListener(DisActive);
