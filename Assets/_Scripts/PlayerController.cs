@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
         bulletBase.gameObject.SetActive(true);
     }
 
-    public void StartControl()
+    public void EnableControl(bool enable = true)
     {
-		GetComponent<vp_FPInput> ().enabled = true;
+		GetComponent<vp_FPInput> ().enabled = enable;
     }
 
     public void TryDefense()

@@ -26,7 +26,7 @@ public class GameCtr : MonoBehaviour
 		{
 			yield return null;
 		}
-		PlayerController.Instance.StartControl ();
+		PlayerController.Instance.EnableControl ();
 	}
 	
 
