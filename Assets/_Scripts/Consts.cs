@@ -23,6 +23,19 @@ public class Consts
     #endregion
 
 
+    #region Boss fields
+
+    public const string BossTag = "Boss";
+
+    public const string AniIsActive = "IsActive";
+    public const string AniTriggerAtk1 = "TriggerAtk1";
+    public const string AniTriggerAtk2 = "TriggerAtk2";
+    public const string AniTriggerAtk3 = "TriggerAtk3";
+    public const string AniIsDead = "IsDead";
+
+    #endregion
+
+
     #region Player fields
 
     public const float AniDefenseDuration = 1f;

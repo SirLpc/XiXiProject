@@ -8,6 +8,10 @@ public class BossSpawner : MonoBehaviour
 
     [SerializeField] private BossCtr _boss;
 
+    private Transform _playerTr;
+    private Transform _myTr;
+    private const float SpawnRange = 3.5f;
+
     #endregion
 
     #region ===属性===
@@ -15,9 +19,15 @@ public class BossSpawner : MonoBehaviour
 
     #region ===Unity事件=== 快捷键： Ctrl + Shift + M /Ctrl + Shift + Q  实现
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (!other.CompareTag(Consts.PlayerTag))
+        _playerTr = PlayerController.Instance.transform;
+        _myTr = transform;
+    }
+
+    private void Update()
+    {
+        if (Vector3.Distance(_playerTr.position, _myTr.position) > SpawnRange)
             return;
 
         _boss.ActiveBoss();
