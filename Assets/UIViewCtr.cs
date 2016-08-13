@@ -9,6 +9,8 @@ public class UIViewCtr : MonoBehaviour
 	[SerializeField]
 	private Text _msgText;
 
+    [SerializeField] private Image _hurtImg;
+
 	public InputUIView InputUIView;
 
 	private void Awake()
@@ -33,10 +35,22 @@ public class UIViewCtr : MonoBehaviour
         StartCoroutine(CoTempTipMsg(oldMsg, seconds));
     }
 
+    public void DisplayHurt()
+    {
+        _hurtImg.enabled = true;
+        StartCoroutine(CoClearHurtImg());
+    }
+
     private IEnumerator CoTempTipMsg(string oldMsg, float seconds)
     {
         yield return new WaitForSeconds(seconds);
         _msgText.text = oldMsg;
+    }
+
+    private IEnumerator CoClearHurtImg()
+    {
+        yield return new WaitForSeconds(.5f);
+        _hurtImg.enabled = false;
     }
 
 	public void ClearMsgIn(float seconds)

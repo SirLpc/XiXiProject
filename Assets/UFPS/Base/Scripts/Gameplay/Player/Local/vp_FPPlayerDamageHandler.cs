@@ -86,7 +86,9 @@ public class vp_FPPlayerDamageHandler : vp_PlayerDamageHandler
 
 		base.Damage(damage);
 
-		FPPlayer.HUDDamageFlash.Send(damage);
+		//FPPlayer.HUDDamageFlash.Send(damage);
+
+        UIViewCtr.Instance.DisplayHurt();
 
 	}
 
