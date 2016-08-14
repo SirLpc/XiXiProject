@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BossDamageHandler : vp_DamageHandler
 {
@@ -32,7 +33,7 @@ public class BossDamageHandler : vp_DamageHandler
 
         BossCurrentHealth = Mathf.Min(BossCurrentHealth - _hitDamage, BossMaxHealth);
 
-        Debug.Log("take damage == " + _hitDamage + "my name is" + gameObject.name);
+        _bossCtr.UICtr.SetHP(BossCurrentHealth, BossMaxHealth);
 
         if (BossCurrentHealth <= 0.0f)
         {
@@ -66,6 +67,7 @@ public class BossDamageHandler : vp_DamageHandler
             m_Audio.PlayOneShot(DeathSound);
         }
 
-        _bossCtr.Anim.SetBool(Consts.AniIsDead, true);
+        _bossCtr.Anim.SetTrigger(Consts.AniBossTriggerDie);
+        _bossCtr.DisActiveBoss();
     }
 }

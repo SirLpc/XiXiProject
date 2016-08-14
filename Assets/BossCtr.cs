@@ -13,9 +13,14 @@ public class BossCtr : MonoBehaviour
     [SerializeField]
     private Transform _farMostPosTr;
 
+    private float _lookSpeed = 5f;
+    private float _activeAnimDuration = 11f;
+
     private BossState _curState;
     private Animator _anim;
     private Transform _myTransform;
+    private Transform _playerTransform;
+    private BossUICtr _uiCtr;
 
     private float _nextAtkTime;
     private AttackData[] _attackDatas;
@@ -28,6 +33,7 @@ public class BossCtr : MonoBehaviour
     private const string SpawnName = "spawn";
 
     private bool _isAttackEffectived;
+    private bool _isActived;
 
     public struct AttackData
     {
@@ -54,6 +60,7 @@ public class BossCtr : MonoBehaviour
     #region ===属性===
     public BossState CurState { get { return _curState; } }
     public Animator Anim { get { return _anim; } }
+    public BossUICtr UICtr { get { return _uiCtr; } }
     #endregion
 
     #region ===Unity事件=== 快捷键： Ctrl + Shift + M /Ctrl + Shift + Q  实现
@@ -61,13 +68,17 @@ public class BossCtr : MonoBehaviour
     private void Awake()
     {
         _anim = GetComponent<Animator>();
+        _uiCtr = GetComponentInChildren<BossUICtr>();
         _myTransform = transform;
         _curState = BossState.INACTIVE;
         _nextAtkTime = float.MaxValue;
+        _isActived = false;
     }
 
     private void Start()
     {
+        _playerTransform = PlayerController.Instance.transform;
+
         var pieceDis = Vector3.Distance(_farMostPosTr.position, _myTransform.position) * (1.0f / AtkNums);
         Debug.Log(Vector3.Distance(_farMostPosTr.position, _myTransform.position));
         Debug.Log(pieceDis);
@@ -80,6 +91,8 @@ public class BossCtr : MonoBehaviour
             dis += pieceDis;
             _attackDatas[i].DisMax = i < AtkNums - 1 ? dis : float.MaxValue;
         }
+
+        _uiCtr.EnableHpSlider(false);
     }
 
     private void Update()
@@ -87,7 +100,10 @@ public class BossCtr : MonoBehaviour
         UpdateAttack();
     }
 
-
+    private void LateUpdate()
+    {
+        LateUpdateLookAtPlayer();
+    }
 
     #endregion
 
@@ -95,14 +111,22 @@ public class BossCtr : MonoBehaviour
 
     public void ActiveBoss()
     {
-        if (_curState != BossState.INACTIVE)
+        if (_isActived || _curState != BossState.INACTIVE)
             return;
 
-        gameObject.SetActive(true);
-        _anim.SetBool(Consts.AniIsActive, true);
-        _curState = BossState.IDEL;
+        _isActived = true;
 
-        _nextAtkTime = Time.time + 10f;
+        _anim.SetBool(Consts.AniIsActive, _isActived);
+
+        StartCoroutine(CoCompleteActive());
+    }
+
+    public void DisActiveBoss()
+    {
+        _curState = BossState.INACTIVE;
+        _nextAtkTime = float.MaxValue;
+
+        _uiCtr.EnableHpSlider(false);
     }
 
     public void AttackSuccess()
@@ -112,18 +136,37 @@ public class BossCtr : MonoBehaviour
 
         _isAttackEffectived = true;
         PlayerController.Instance.DamangeHandler.Damage(_lastAttackData.Damage);
-        Debug.LogError("Damaged " + _lastAttackData.Damage + " HP");
     }
 
     private void UpdateAttack()
     {
-        if (CurState != BossState.IDEL)
+        if (CurState != BossState.IDEL || CurState == BossState.INACTIVE)
             return;
 
         if (Time.time > _nextAtkTime)
         {
             _nextAtkTime = float.MaxValue;
             DoAttack(GetAttack());
+        }
+    }
+
+    private void LateUpdateLookAtPlayer()
+    {
+        if (CurState != BossState.IDEL)
+            return;
+
+        var pY = new Vector3(_playerTransform.position.x, 0, _playerTransform.position.z);
+        var mY = new Vector3(_myTransform.position.x, 0, _myTransform.position.z);
+        Vector3 dir = pY - mY;
+        Vector3 cross = Vector3.Cross(transform.forward, dir.normalized);
+        float dot = Vector3.Dot(transform.forward, dir.normalized);
+        if (cross.y > 0.1f)
+        {
+            _myTransform.Rotate(Vector3.up, Time.deltaTime * _lookSpeed);
+        }
+        else if (cross.y < -0.1f)
+        {
+            _myTransform.Rotate(Vector3.down, Time.deltaTime * _lookSpeed);
         }
     }
 
@@ -156,6 +199,15 @@ public class BossCtr : MonoBehaviour
             Anim.SetTrigger(atkData.AnimName);
         else
             OnAttackComplete();
+    }
+
+    private IEnumerator CoCompleteActive()
+    {
+        yield return new WaitForSeconds(_activeAnimDuration);
+
+        _nextAtkTime = Time.time;
+        _curState = BossState.IDEL;
+        _uiCtr.EnableHpSlider(true);
     }
 
 

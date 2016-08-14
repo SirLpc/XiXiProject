@@ -55,13 +55,13 @@ public class UIViewCtr : MonoBehaviour
 
 	public void ClearMsgIn(float seconds)
 	{
-		StartCoroutine (CoClearMsg (seconds));
+        StopAllCoroutines();
+        StartCoroutine (CoClearMsg (seconds));
 	}
 
 	private IEnumerator CoClearMsg(float seconds)
 	{
 		yield return new WaitForSeconds (seconds);
 		_msgText.text = string.Empty;
-		StopAllCoroutines ();
 	}
 }

@@ -31,7 +31,7 @@ public class Consts
     public const string AniTriggerAtk1 = "TriggerAtk1";
     public const string AniTriggerAtk2 = "TriggerAtk2";
     public const string AniTriggerAtk3 = "TriggerAtk3";
-    public const string AniIsDead = "IsDead";
+    public const string AniBossTriggerDie = "TriggerDie";
 
     #endregion
 
