@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private float _lastSpecialAttackTime;
     private Coroutine _saCoroutine;
     private Transform _transform;
+    private CharacterController _characterCtr;
 
 	private float _specialAttackGapUN, _defenseGapUN;
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         DamangeHandler = GetComponent<vp_FPPlayerDamageHandler>();
         EventHandler = GetComponent<vp_FPPlayerEventHandler>();
         _handsomegunProperty = GetComponentInChildren<HandsomegunProperty>();
+        _characterCtr = GetComponent<CharacterController>();
         _transform = transform;
 
 		_specialAttackGapUN = 1 / _specialAttackGap;
@@ -105,22 +107,6 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator CoDetectSpecialAttack()
     {
-        //var counter = 0f;
-        //while (counter < _specialAttackEffectiveTime)
-        //{
-        //    counter += Time.deltaTime;
-        //    if (!vp_FPInput.DetectCancelInputSpecialAttack())
-        //    {
-        //        yield return null;
-        //    }
-        //    else
-        //    {
-        //        IsInSpecialAttack = false;
-        //        _handsomegunProperty.StopAnimation();
-        //        yield break;
-        //    }
-        //}
-
         yield return new WaitForSeconds(_specialAttackEffectiveTime);
 
         SpecialAttackEffectived = true;
@@ -136,6 +122,11 @@ public class PlayerController : MonoBehaviour
 
         SpecialAttackEffectived = false;
         _saCoroutine = null;
+    }
+
+    public void ForceMove(Vector3 dir)
+    {
+        _characterCtr.Move(dir);
     }
 
 }

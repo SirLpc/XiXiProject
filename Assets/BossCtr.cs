@@ -12,9 +12,15 @@ public class BossCtr : MonoBehaviour
 
     [SerializeField]
     private Transform _farMostPosTr;
+    [SerializeField]
+    private GameObject _zhiZhuPref;
 
-    private float _lookSpeed = 5f;
+    private float _lookSpeed = 10f;
     private float _activeAnimDuration = 11f;
+    private float _forceBackDistance = 5f;
+
+    private const int MaxZhiZhuNum = 5;
+    public static int CurZhiZhuNum;
 
     private BossState _curState;
     private Animator _anim;
@@ -136,6 +142,7 @@ public class BossCtr : MonoBehaviour
 
         _isAttackEffectived = true;
         PlayerController.Instance.DamangeHandler.Damage(_lastAttackData.Damage);
+        PlayerController.Instance.ForceMove(_myTransform.forward * _forceBackDistance);
     }
 
     private void UpdateAttack()
@@ -198,7 +205,17 @@ public class BossCtr : MonoBehaviour
         if (!atkData.AnimName.Equals(SpawnName))
             Anim.SetTrigger(atkData.AnimName);
         else
-            OnAttackComplete();
+            DoSpawn();
+    }
+
+    private void DoSpawn()
+    {
+        OnAttackComplete();
+        if (CurZhiZhuNum >= MaxZhiZhuNum)
+            return;
+
+        Instantiate(_zhiZhuPref, _myTransform.position, Quaternion.identity);
+        CurZhiZhuNum++;
     }
 
     private IEnumerator CoCompleteActive()

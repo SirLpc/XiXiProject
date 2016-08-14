@@ -86,7 +86,6 @@ public class VRInputSetter : MonoBehaviour
                 case STEP.COMPLETE:
                     SetKeysRuntime();
                     IsInputOk = true;
-                    Debug.Log("set ok");
                     UIViewCtr.Instance.DisplayMsg("设置完毕，游戏开始！");
                     UIViewCtr.Instance.ClearMsgIn(3);
                     break;
@@ -214,6 +213,5 @@ public class VRInputSetter : MonoBehaviour
         Consts.InputAttackKeyCode = PlayerPrefs.GetString(Consts.InputAttackKey, string.Empty);
         Consts.InputDefenseKeyCode = PlayerPrefs.GetString(Consts.InputDefenseKey, string.Empty);
         Consts.InputSpecialAttackKeyCode = PlayerPrefs.GetString(Consts.InputSpecialAttackKey, string.Empty);
-        Debug.Log(string.Format("atk is {0},,def is {1},,SA is {2}", Consts.InputAttackKeyCode, Consts.InputDefenseKeyCode, Consts.InputSpecialAttackKeyCode));
     }
 }

@@ -155,10 +155,12 @@ public class vp_HitscanBullet : MonoBehaviour
 
 			// do damage on the target
             if(!hit.collider.CompareTag(Consts.EnemyTag))
+            {
 			    hit.collider.SendMessageUpwards(DamageMethodName, Damage, SendMessageOptions.DontRequireReceiver);
+            }
             else
             {
-				float dmg;
+                float dmg;
 				if (PlayerController.Instance.SpecialAttackEffectived) 
 				{
 					dmg = 50f;
