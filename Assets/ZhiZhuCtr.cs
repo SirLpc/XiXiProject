@@ -48,7 +48,7 @@ public class ZhiZhuCtr : MonoBehaviour
 
     private bool IsInAtkScope()
     {
-        return Vector3.Distance(_playerTransform.position, _myTransform.position) <= _agent.stoppingDistance;
+        return Vector3.Distance(_playerTransform.position, _myTransform.position) <= _agent.stoppingDistance + .5f;
     }
 
     private void Chase()
