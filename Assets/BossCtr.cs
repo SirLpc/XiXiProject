@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
-using ADBannerView = UnityEngine.iOS.ADBannerView;
 using Random = UnityEngine.Random;
 
 
