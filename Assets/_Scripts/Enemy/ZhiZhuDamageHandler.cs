@@ -34,8 +34,10 @@ public class ZhiZhuDamageHandler : vp_DamageHandler
         if (m_CurrentHealth <= 0.0f)
             return;
 
-        m_CurrentHealth = Mathf.Min(m_CurrentHealth - _takeDamage, MaxHealth);
-        Debug.Log("damaged" + _takeDamage);
+        if (!PlayerController.Instance.SpecialAttackEffectived)
+            m_CurrentHealth = Mathf.Min(m_CurrentHealth - _takeDamage, MaxHealth);
+        else
+            m_CurrentHealth = 0.0f;
 
         if (m_CurrentHealth <= 0.0f)
         {

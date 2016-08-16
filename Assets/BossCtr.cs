@@ -31,7 +31,7 @@ public class BossCtr : MonoBehaviour
 
     private const int AtkNums = 4;
     private int[] AtkRests = new int[AtkNums] { 3, 4, 5, 6 };
-    private float[] AtkDamages = new float[AtkNums] { 10, 20, 30, 0 };
+    private float[] AtkDamages = new float[AtkNums] { 1, 2, 3, 0 };
     private string[] AtkNames;
     private const string SpawnName = "spawn";
 

@@ -592,6 +592,9 @@ public class vp_FPController : vp_Component
 		// while there is an active death event, block movement input
 		if (Player.Dead.Active)
 		{
+
+
+            Debug.LogError("I am dead!");
 			m_MoveVector = Vector2.zero;
 			return;
 		}
