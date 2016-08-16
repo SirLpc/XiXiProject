@@ -1,9 +1,6 @@
-﻿using System;
+﻿
 using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
-using ADBannerView = UnityEngine.iOS.ADBannerView;
-using Random = UnityEngine.Random;
 
 
 public class BossCtr : MonoBehaviour
@@ -193,7 +190,7 @@ public class BossCtr : MonoBehaviour
         if (Random.Range(0, 10) <= 7)
             return curData;
 
-        var exceptionData = Array.FindAll(_attackDatas, data => data.AnimName != curData.AnimName);
+        var exceptionData = System.Array.FindAll(_attackDatas, data => data.AnimName != curData.AnimName);
         return exceptionData.Length > 0 ? exceptionData[Random.Range(0, exceptionData.Length)] : curData;
     }
 
