@@ -105,6 +105,18 @@ public class PlayerController : MonoBehaviour
         _saCoroutine = null;
     }
 
+
+    public void PlayEarthquake()
+    {
+        //m_Demo.Camera.Load(StompingCamera);
+        //m_Demo.Controller.Load(SmackController);
+        EventHandler.Earthquake.TryStart(new Vector3(0.2f, 0.2f, 10.0f));
+        //m_Demo.ButtonColumnArrowFadeoutTime = Time.time + 9;
+        //m_AudioSource.Stop();
+        //m_AudioSource.pitch = Time.timeScale;
+        //m_AudioSource.PlayOneShot(m_EarthquakeSound);
+    }
+
     private IEnumerator CoDetectSpecialAttack()
     {
         yield return new WaitForSeconds(_specialAttackEffectiveTime);
@@ -128,5 +140,6 @@ public class PlayerController : MonoBehaviour
     {
         _characterCtr.Move(dir);
     }
+
 
 }

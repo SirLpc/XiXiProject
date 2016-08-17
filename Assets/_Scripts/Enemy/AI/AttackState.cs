@@ -103,7 +103,7 @@ public class AttackState : IEnemyState
 
         if (!PlayerController.Instance.IsInDefense)
         {
-            //todo set damage num
+            //todo set damage num --lpc
             PlayerController.Instance.DamangeHandler.Damage(enemy.AttackNum);
 
             //在这里变成非追捕状态，是为了防止攻击之后在间隔中变成idel状态，又自动从idel变成了追捕

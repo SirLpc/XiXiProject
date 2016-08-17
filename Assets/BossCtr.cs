@@ -120,6 +120,7 @@ public class BossCtr : MonoBehaviour
         _isActived = true;
 
         _anim.SetBool(Consts.AniIsActive, _isActived);
+        PlayerController.Instance.PlayEarthquake();
 
         StartCoroutine(CoCompleteActive());
     }
