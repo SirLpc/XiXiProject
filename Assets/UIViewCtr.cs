@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class UIViewCtr : MonoBehaviour
 {
 	public static UIViewCtr Instance = null;
 
+    private float _fadeOutSpeed = 2f;
+
 	[SerializeField]
 	private Text _msgText;
 
-    [SerializeField] private Image _hurtImg;
+    [SerializeField]
+    private Image _hurtImg;
+    [SerializeField]
+    private Image _maskImg;
 
 	public InputUIView InputUIView;
 
@@ -64,4 +70,44 @@ public class UIViewCtr : MonoBehaviour
 		yield return new WaitForSeconds (seconds);
 		_msgText.text = string.Empty;
 	}
+
+    public void FadeOut(Action after)
+    {
+        _maskImg.color = new Color(0, 0, 0, 0);
+        _maskImg.gameObject.SetActive(true);
+        StartCoroutine(CoFadeOut(after));
+    }
+
+    private IEnumerator CoFadeOut(Action after)
+    {
+        while (_maskImg.color.a < .98f)
+        {
+            yield return null;
+            var c = Color.Lerp(_maskImg.color, new Color(0, 0, 0, 1), _fadeOutSpeed * Time.deltaTime);
+            _maskImg.color = c;
+        }
+        Debug.Log("to aftere");
+        if(after != null)
+            after.Invoke();
+    }
+
+    public void FadeIn(Action after)
+    {
+        _maskImg.color = new Color(0, 0, 0, 1);
+        _maskImg.gameObject.SetActive(true);
+        StartCoroutine(CoFadeIn(after));
+    }
+
+    private IEnumerator CoFadeIn(Action after)
+    {
+        while (_maskImg.color.a > .02f)
+        {
+            yield return null;
+            var c = Color.Lerp(_maskImg.color, new Color(0, 0, 0, 0), _fadeOutSpeed * Time.deltaTime);
+            _maskImg.color = c;
+        }
+        _maskImg.gameObject.SetActive(false);
+        if (after != null)
+            after.Invoke();
+    }
 }

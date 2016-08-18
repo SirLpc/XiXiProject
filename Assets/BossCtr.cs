@@ -83,8 +83,6 @@ public class BossCtr : MonoBehaviour
         _playerTransform = PlayerController.Instance.transform;
 
         var pieceDis = Vector3.Distance(_farMostPosTr.position, _myTransform.position) * (1.0f / AtkNums);
-        Debug.Log(Vector3.Distance(_farMostPosTr.position, _myTransform.position));
-        Debug.Log(pieceDis);
         var dis = 0.0f;
         AtkNames = new string[AtkNums] { Consts.AniTriggerAtk1, Consts.AniTriggerAtk2, Consts.AniTriggerAtk3, SpawnName };
         _attackDatas = new AttackData[AtkNums];
