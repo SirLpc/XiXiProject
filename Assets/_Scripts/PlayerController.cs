@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         //_controller.AddForce(UnityEngine.Random.Range(-1.5f, 1.5f), 0.5f,
         //                                                            UnityEngine.Random.Range(-1.5f, -0.5f));
-        _controller.AddForce(dir.normalized);
+        _controller.AddForce(dir.normalized * .3f);
     }
 
 
