@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -127,10 +128,19 @@ public class HandsomegunProperty : MonoBehaviour
         }
         else
         {
-            endPos = startPos.forward*1000f;
+            endPos = startPos.right* (-1000f);
+            
         }
         BulletLine.SetPosition(0, startPos.position);
         BulletLine.SetPosition(1, endPos);
+        StartCoroutine(CoClearLine());
     }
+
+    private IEnumerator CoClearLine()
+    {
+        yield return null;
+        BulletLine.SetPosition(0, Vector3.zero);
+        BulletLine.SetPosition(1, Vector3.zero);
+    } 
 
 }

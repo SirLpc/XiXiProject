@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance = null;
     public vp_FPPlayerDamageHandler DamangeHandler { get; private set; }
     public vp_FPPlayerEventHandler EventHandler { get; private set; }
-    public HandsomegunProperty HandsomeGun { get { return _handsomegunProperty; } }
+    public HandsomegunProperty HandsomegunProperty { get { return _handsomegunProperty; } }
 
     private HandsomegunProperty _handsomegunProperty;
 
