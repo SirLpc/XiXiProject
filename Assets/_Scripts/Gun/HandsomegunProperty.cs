@@ -114,13 +114,14 @@ public class HandsomegunProperty : MonoBehaviour
 
     public void TryDrawLine(Vector3? hitPoint = null)
     {
-        Transform startPos = Shooter.IsFireLeft ? PosLeft : PosRight;
+        Transform startPos = !Shooter.IsFireLeft ? PosLeft : PosRight;
         if (PosLeft == null || PosRight == null)
         {
             Debug.Log("Bullet start pos not found!!");
             return;
         }
 
+        BulletLine.SetVertexCount(2);
         Vector3 endPos;
         if (hitPoint != null)
         {
@@ -139,8 +140,9 @@ public class HandsomegunProperty : MonoBehaviour
     private IEnumerator CoClearLine()
     {
         yield return null;
-        BulletLine.SetPosition(0, Vector3.zero);
-        BulletLine.SetPosition(1, Vector3.zero);
+        BulletLine.SetVertexCount(0);
+        //BulletLine.SetPosition(0, Vector3.zero);
+        //BulletLine.SetPosition(1, Vector3.zero);
     } 
 
 }
