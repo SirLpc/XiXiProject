@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance = null;
     public vp_FPPlayerDamageHandler DamangeHandler { get; private set; }
     public vp_FPPlayerEventHandler EventHandler { get; private set; }
-    public HandsomegunProperty HandsomegunProperty { get { return _handsomegunProperty; } }
+    public HandsomegunProperty HandsomeGun { get { return _handsomegunProperty; } }
 
     private HandsomegunProperty _handsomegunProperty;
 
@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void EnableControl(bool enable = true)
     {
-		GetComponent<vp_FPInput> ().enabled = enable;
+		//GetComponent<vp_FPInput> ().enabled = enable;
+        EventHandler.AllowGameplayInput.Set(enable);
     }
 
     public void TryDefense()

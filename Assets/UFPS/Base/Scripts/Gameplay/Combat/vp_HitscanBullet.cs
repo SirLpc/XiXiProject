@@ -93,6 +93,7 @@ public class vp_HitscanBullet : MonoBehaviour
 	{
 
 		Ray ray = new Ray(m_Transform.position, transform.forward);
+        Debug.Log("dohit fired");
 		RaycastHit hit;
 		// raycast against all big, solid objects except the player itself
 	    if (Physics.Raycast(ray, out hit, Range,

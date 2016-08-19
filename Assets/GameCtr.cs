@@ -10,13 +10,14 @@ public class GameCtr : MonoBehaviour
 	{
         Application.targetFrameRate = 45;
 
-
         _inputSetter = GetComponent<VRInputSetter> ();
 	}
 
 	private IEnumerator Start () 
 	{
-		if (!_inputSetter.IsInputOk)
+        UIViewCtr.Instance.FadeIn(null);
+        PlayerController.Instance.EnableControl(false);
+        if (!_inputSetter.IsInputOk)
 		{
 			UIViewCtr.Instance.DisplayMsg ("即将为您初始化按键");
 			yield return new WaitForSeconds (3);

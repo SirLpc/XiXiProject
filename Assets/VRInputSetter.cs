@@ -87,6 +87,7 @@ public class VRInputSetter : MonoBehaviour
                     SetKeysRuntime();
                     IsInputOk = true;
                     UIViewCtr.Instance.DisplayMsg("设置完毕，游戏开始！");
+                    PlayerPrefs.SetInt(Consts.IsInputOkKey, 1);
                     UIViewCtr.Instance.ClearMsgIn(3);
                     break;
             }

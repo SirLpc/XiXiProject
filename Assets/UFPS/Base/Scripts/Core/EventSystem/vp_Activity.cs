@@ -254,16 +254,16 @@ public class vp_Activity : vp_Event			// non-generic version for 0 arguments
 			return false;
 		}
 
-	    //if (PlayerController.Instance.IsInDefense)
-	    //    return false;
+        if (PlayerController.Instance.IsInDefense)
+            return false;
 
         //如果特殊攻击已经生效，就不能继续start了，否则就中断特殊攻击
-	    //if (PlayerController.Instance.SpecialAttackEffectived)
-     //       return false;
-	    //else
-	    //    PlayerController.Instance.ShutSpecialAttack();
+        if (PlayerController.Instance.SpecialAttackEffectived)
+            return false;
+        else
+            PlayerController.Instance.ShutSpecialAttack();
 
-		foreach (Condition b in StartConditions.GetInvocationList())
+        foreach (Condition b in StartConditions.GetInvocationList())
 		{
 			if (!b.Invoke())
 			{

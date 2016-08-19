@@ -13,7 +13,7 @@ public class SignalCtr : MonoBehaviour
 
     private void Awake()
     {
-        _bossDoor.SetActive(false);
+        _bossDoor.SetActive(true);
     }
 	
 	private IEnumerator Start()
