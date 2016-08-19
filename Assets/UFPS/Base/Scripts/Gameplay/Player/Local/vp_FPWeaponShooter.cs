@@ -49,6 +49,7 @@ public class vp_FPWeaponShooter : vp_Shooter
     private bool _isHandsomegun;
     private HandsomegunProperty _handsomegunProperty;
     private bool _isFireLeft = true;
+    public bool IsFireLeft { get { return _isFireLeft; } }
 
 	// event handler property cast as a playereventhandler
 	vp_FPPlayerEventHandler m_Player = null;

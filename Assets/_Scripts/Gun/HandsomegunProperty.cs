@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 
@@ -11,6 +12,67 @@ public class HandsomegunProperty : MonoBehaviour
     public AnimationClip IdelClip;
     public AnimationClip DefenseClip;
     public AnimationClip SpecailAttackClip;
+    /// <summary>
+    /// Use property instead!
+    /// </summary>
+    private Transform _posLeft, _posRight;
+    private PositionTool[] _poss;
+
+    private LineRenderer _bulletLine;
+
+    private LineRenderer BulletLine
+    {
+        get
+        {
+            if (_bulletLine != null)
+                return _bulletLine;
+            _bulletLine = GetComponent<LineRenderer>();
+            return _bulletLine;
+        }
+    }
+
+    private PositionTool[] Poss
+    {
+        get
+        {
+            if (_poss != null)
+                return _poss;
+            _poss = GetComponentsInChildren<PositionTool>();
+            return _poss;
+        }
+    }
+
+    private Transform PosLeft
+    {
+        get
+        {
+            if (_posLeft != null)
+                return _posLeft;
+            if (Poss != null)
+            {
+                var left = Array.Find(Poss, tool => tool.Direction == Direction.LEFT);
+                if(left != null)
+                    _posLeft = left.transform;
+            }
+            return _posLeft;
+        }
+    }
+
+    private Transform PosRight
+    {
+        get
+        {
+            if (_posRight != null)
+                return _posRight;
+            if (Poss != null)
+            {
+                var right = Array.Find(Poss, tool => tool.Direction == Direction.RIGHT);
+                if (right != null)
+                    _posRight = right.transform;
+            }
+            return _posRight;
+        }
+    }
 
     private Animation _animation;
     private Animation Animation
@@ -49,5 +111,26 @@ public class HandsomegunProperty : MonoBehaviour
         PlayAnimation(IdelClip.name);
     }
 
+    public void TryDrawLine(Vector3? hitPoint = null)
+    {
+        Transform startPos = Shooter.IsFireLeft ? PosLeft : PosRight;
+        if (PosLeft == null || PosRight == null)
+        {
+            Debug.Log("Bullet start pos not found!!");
+            return;
+        }
+
+        Vector3 endPos;
+        if (hitPoint != null)
+        {
+            endPos = (Vector3) hitPoint;
+        }
+        else
+        {
+            endPos = startPos.forward*1000f;
+        }
+        BulletLine.SetPosition(0, startPos.position);
+        BulletLine.SetPosition(1, endPos);
+    }
 
 }

@@ -95,113 +95,118 @@ public class vp_HitscanBullet : MonoBehaviour
 		Ray ray = new Ray(m_Transform.position, transform.forward);
 		RaycastHit hit;
 		// raycast against all big, solid objects except the player itself
-		if (Physics.Raycast(ray, out hit, Range, (IgnoreLocalPlayer ? vp_Layer.Mask.BulletBlockers : vp_Layer.Mask.IgnoreWalkThru)))
-		{
+	    if (Physics.Raycast(ray, out hit, Range,
+	        (IgnoreLocalPlayer ? vp_Layer.Mask.BulletBlockers : vp_Layer.Mask.IgnoreWalkThru)))
+	    {
+	        PlayerController.Instance.HandsomegunProperty.TryDrawLine(hit.point);
 
-			// NOTE: we can't bail out of this if-statement based on !collider.isTrigger,
-			// because that would make bullets _disappear_ if they hit a trigger. to make a
-			// trigger not interfere with bullets, put it in the layer: 'vp_Layer.Trigger'
-			// (default: 27)
+	        // NOTE: we can't bail out of this if-statement based on !collider.isTrigger,
+	        // because that would make bullets _disappear_ if they hit a trigger. to make a
+	        // trigger not interfere with bullets, put it in the layer: 'vp_Layer.Trigger'
+	        // (default: 27)
 
-			// move this gameobject instance to the hit object
-			Vector3 scale = m_Transform.localScale;	// save scale to handle scaled parent objects
-			m_Transform.parent = hit.transform;
-			m_Transform.localPosition = hit.transform.InverseTransformPoint(hit.point);
-			m_Transform.rotation = Quaternion.LookRotation(hit.normal);					// face away from hit surface
-			if (hit.transform.lossyScale == Vector3.one)								// if hit object has normal scale
-				m_Transform.Rotate(Vector3.forward, Random.Range(0, 360), Space.Self);	// spin randomly
-			else
-			{
-				// rotated child objects will get skewed if the parent object has been
-				// unevenly scaled in the editor, so on scaled objects we don't support
-				// spin, and we need to unparent, rescale and reparent the decal.
-				m_Transform.parent = null;
-				m_Transform.localScale = scale;
-				m_Transform.parent = hit.transform;
-			}
-			
-			// if hit object has physics, add the bullet force to it
-			Rigidbody body = hit.collider.attachedRigidbody;
-			if (body != null && !body.isKinematic)
-				body.AddForceAtPosition(((ray.direction * Force) / Time.timeScale) / vp_TimeUtility.AdjustedTimeScale, hit.point);
+	        // move this gameobject instance to the hit object
+	        Vector3 scale = m_Transform.localScale; // save scale to handle scaled parent objects
+	        m_Transform.parent = hit.transform;
+	        m_Transform.localPosition = hit.transform.InverseTransformPoint(hit.point);
+	        m_Transform.rotation = Quaternion.LookRotation(hit.normal); // face away from hit surface
+	        if (hit.transform.lossyScale == Vector3.one) // if hit object has normal scale
+	            m_Transform.Rotate(Vector3.forward, Random.Range(0, 360), Space.Self); // spin randomly
+	        else
+	        {
+	            // rotated child objects will get skewed if the parent object has been
+	            // unevenly scaled in the editor, so on scaled objects we don't support
+	            // spin, and we need to unparent, rescale and reparent the decal.
+	            m_Transform.parent = null;
+	            m_Transform.localScale = scale;
+	            m_Transform.parent = hit.transform;
+	        }
 
-			// spawn impact effect
-			if (m_ImpactPrefab != null)
-				vp_Utility.Instantiate(m_ImpactPrefab, m_Transform.position, m_Transform.rotation);
+	        // if hit object has physics, add the bullet force to it
+	        Rigidbody body = hit.collider.attachedRigidbody;
+	        if (body != null && !body.isKinematic)
+	            body.AddForceAtPosition(((ray.direction*Force)/Time.timeScale)/vp_TimeUtility.AdjustedTimeScale, hit.point);
 
-			// spawn dust effect
-			if (m_DustPrefab != null)
-				vp_Utility.Instantiate(m_DustPrefab, m_Transform.position, m_Transform.rotation);
+	        // spawn impact effect
+	        if (m_ImpactPrefab != null)
+	            vp_Utility.Instantiate(m_ImpactPrefab, m_Transform.position, m_Transform.rotation);
 
-			// spawn spark effect
-			if (m_SparkPrefab != null)
-			{
-				if (Random.value < m_SparkFactor)
-					vp_Utility.Instantiate(m_SparkPrefab, m_Transform.position, m_Transform.rotation);
-			}
+	        // spawn dust effect
+	        if (m_DustPrefab != null)
+	            vp_Utility.Instantiate(m_DustPrefab, m_Transform.position, m_Transform.rotation);
 
-			// spawn debris particle fx
-			if (m_DebrisPrefab != null)
-				vp_Utility.Instantiate(m_DebrisPrefab, m_Transform.position, m_Transform.rotation);
+	        // spawn spark effect
+	        if (m_SparkPrefab != null)
+	        {
+	            if (Random.value < m_SparkFactor)
+	                vp_Utility.Instantiate(m_SparkPrefab, m_Transform.position, m_Transform.rotation);
+	        }
 
-			// play impact sound
-			if (m_ImpactSounds.Count > 0)
-			{
-				m_Audio.pitch = Random.Range(SoundImpactPitch.x, SoundImpactPitch.y) * Time.timeScale;
-				m_Audio.clip = m_ImpactSounds[(int)Random.Range(0, (m_ImpactSounds.Count))];
-				m_Audio.Stop();
-				m_Audio.Play();
-			}
+	        // spawn debris particle fx
+	        if (m_DebrisPrefab != null)
+	            vp_Utility.Instantiate(m_DebrisPrefab, m_Transform.position, m_Transform.rotation);
 
-			// do damage on the target
-            if(!hit.collider.CompareTag(Consts.EnemyTag))
-            {
-			    hit.collider.SendMessageUpwards(DamageMethodName, Damage, SendMessageOptions.DontRequireReceiver);
-            }
-            else
-            {
-                float dmg;
-				if (PlayerController.Instance.SpecialAttackEffectived) 
-				{
-					dmg = 50f;
-				}
-                //todo 1.7为头部判定高度，1.7以上为头    --lpc的标记
-				else if (hit.point.y - hit.transform.position.y < 1.7f)
-                {
-					dmg = 10f;
-                }
-                else
-                {
-					dmg = 30f;
-                }
-				hit.collider.SendMessageUpwards(DamageMethodName, dmg, SendMessageOptions.DontRequireReceiver);
-				TryDestroyImmediately ();
-            }
+	        // play impact sound
+	        if (m_ImpactSounds.Count > 0)
+	        {
+	            m_Audio.pitch = Random.Range(SoundImpactPitch.x, SoundImpactPitch.y)*Time.timeScale;
+	            m_Audio.clip = m_ImpactSounds[(int) Random.Range(0, (m_ImpactSounds.Count))];
+	            m_Audio.Stop();
+	            m_Audio.Play();
+	        }
 
-            // prevent adding decals to objects based on layer
-            if (NoDecalOnTheseLayers.Length > 0)
-			{
-				foreach (int layer in NoDecalOnTheseLayers)
-				{
+	        // do damage on the target
+	        if (!hit.collider.CompareTag(Consts.EnemyTag))
+	        {
+	            hit.collider.SendMessageUpwards(DamageMethodName, Damage, SendMessageOptions.DontRequireReceiver);
+	        }
+	        else
+	        {
+	            float dmg;
+	            if (PlayerController.Instance.SpecialAttackEffectived)
+	            {
+	                dmg = 50f;
+	            }
+	            //todo 1.7为头部判定高度，1.7以上为头    --lpc的标记
+	            else if (hit.point.y - hit.transform.position.y < 1.7f)
+	            {
+	                dmg = 10f;
+	            }
+	            else
+	            {
+	                dmg = 30f;
+	            }
+	            hit.collider.SendMessageUpwards(DamageMethodName, dmg, SendMessageOptions.DontRequireReceiver);
+	            TryDestroyImmediately();
+	        }
 
-					if (hit.transform.gameObject.layer != layer)
-						continue;
+	        // prevent adding decals to objects based on layer
+	        if (NoDecalOnTheseLayers.Length > 0)
+	        {
+	            foreach (int layer in NoDecalOnTheseLayers)
+	            {
 
-					TryDestroy();
-					return;
+	                if (hit.transform.gameObject.layer != layer)
+	                    continue;
 
-				}
-			}
+	                TryDestroy();
+	                return;
 
-			// if bullet is visible (i.e. has a decal), queue it for deletion later
-			if(m_Renderer != null)
-				vp_DecalManager.Add(gameObject);
-			else
-				vp_Timer.In(1, TryDestroy);		// we have no renderer, so destroy object in 1 sec
+	            }
+	        }
 
-		}
-		else
-			vp_Utility.Destroy(gameObject);	// hit nothing, so self destruct immediately
+	        // if bullet is visible (i.e. has a decal), queue it for deletion later
+	        if (m_Renderer != null)
+	            vp_DecalManager.Add(gameObject);
+	        else
+	            vp_Timer.In(1, TryDestroy); // we have no renderer, so destroy object in 1 sec
+
+	    }
+	    else
+	    {
+            PlayerController.Instance.HandsomegunProperty.TryDrawLine();
+			vp_Utility.Destroy(gameObject); // hit nothing, so self destruct immediately
+        }
 
 	}
 

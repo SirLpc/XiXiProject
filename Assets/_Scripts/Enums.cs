@@ -10,3 +10,12 @@ public enum BossState
     ATK_FULL = 2,
     ATK_SPAWN = 3,
 }
+
+
+public enum Direction
+{
+    LEFT,
+    RIGHT,
+    FORWARD,
+    BACKWARD,
+}
