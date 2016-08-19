@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public HandsomegunProperty HandsomegunProperty { get { return _handsomegunProperty; } }
 
     private HandsomegunProperty _handsomegunProperty;
+    private vp_FPController _controller;
 
     public bool IsInDefense { get; private set; }
     private float _lastDefenseTime;
@@ -24,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private float _lastSpecialAttackTime;
     private Coroutine _saCoroutine;
     private Transform _transform;
-    private CharacterController _characterCtr;
 
 	private float _specialAttackGapUN, _defenseGapUN;
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         DamangeHandler = GetComponent<vp_FPPlayerDamageHandler>();
         EventHandler = GetComponent<vp_FPPlayerEventHandler>();
         _handsomegunProperty = GetComponentInChildren<HandsomegunProperty>();
-        _characterCtr = GetComponent<CharacterController>();
+        _controller = GetComponent<vp_FPController>();
         _transform = transform;
 
 		_specialAttackGapUN = 1 / _specialAttackGap;
@@ -140,7 +140,9 @@ public class PlayerController : MonoBehaviour
 
     public void ForceMove(Vector3 dir)
     {
-        _characterCtr.Move(dir);
+        //_controller.AddForce(UnityEngine.Random.Range(-1.5f, 1.5f), 0.5f,
+        //                                                            UnityEngine.Random.Range(-1.5f, -0.5f));
+        _controller.AddForce(dir.normalized);
     }
 
 
