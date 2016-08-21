@@ -86,7 +86,6 @@ public class UIViewCtr : MonoBehaviour
             var c = Color.Lerp(_maskImg.color, new Color(0, 0, 0, 1), _fadeOutSpeed * Time.deltaTime);
             _maskImg.color = c;
         }
-        Debug.Log("to aftere");
         if(after != null)
             after.Invoke();
     }

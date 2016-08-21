@@ -157,6 +157,8 @@ public class EnemyDamageHandler : vp_DamageHandler
             if (o != null)
                 vp_Utility.Instantiate(o, transform.position, transform.rotation);
         }
+
+        GameObject.Destroy(transform.root.gameObject);
     }
 
     private void EnableAllColliders(bool enabled)

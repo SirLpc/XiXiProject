@@ -36,10 +36,12 @@ public class SignalCtr : MonoBehaviour
     {
         var alive = false;
         for (int i = 0; i < group.Length; i++)
-            if (group[i].IsAlive)
+        {
+            if (group[i] != null && group[i].IsAlive)
             {
                 alive = true;
             }
+        }
         return alive;
     }
 }
