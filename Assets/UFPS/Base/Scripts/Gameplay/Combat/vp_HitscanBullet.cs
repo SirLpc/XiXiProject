@@ -178,11 +178,15 @@ public class vp_HitscanBullet : MonoBehaviour
 	                dmg = 30f;
 	            }
 	            hit.collider.SendMessageUpwards(DamageMethodName, dmg, SendMessageOptions.DontRequireReceiver);
-	            TryDestroyImmediately();
 	        }
 
-	        // prevent adding decals to objects based on layer
-	        if (NoDecalOnTheseLayers.Length > 0)
+            if (hit.collider.CompareTag(Consts.EnemyTag) || hit.collider.CompareTag(Consts.BossTag))
+            {
+                TryDestroyImmediately();
+            }
+
+            // prevent adding decals to objects based on layer
+            if (NoDecalOnTheseLayers.Length > 0)
 	        {
 	            foreach (int layer in NoDecalOnTheseLayers)
 	            {
