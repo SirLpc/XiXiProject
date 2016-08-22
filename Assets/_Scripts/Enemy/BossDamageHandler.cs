@@ -7,8 +7,8 @@ public class BossDamageHandler : vp_DamageHandler
     [SerializeField] private float _hitDamage;
 
     private BossCtr _bossCtr;
-    private static float BossCurrentHealth = 12000;
-    private static float BossMaxHealth = 12000;
+    private const float BossMaxHealth = 8000;
+    private static float BossCurrentHealth = BossMaxHealth;
 
     private void Awake()
     {
