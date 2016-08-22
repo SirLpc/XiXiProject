@@ -114,21 +114,21 @@ public class vp_FPInput : MonoBehaviour
 				if (currentKey.ToString() == Consts.InputAttackKeyCode)
                 {
                     atkPressed = true;
-                    msg = "\n atk pressed!!!";
+                    //msg = "\n atk pressed!!!";
                 }
 				if (currentKey.ToString() == Consts.InputDefenseKeyCode)
 				{
 					defPressed = true;
-					msg = "\n sa pressed!!!";
+					//msg = "\n sa pressed!!!";
 				}
 				if (currentKey.ToString() == Consts.InputSpecialAttackKeyCode)
                 {
                     saPressed = true;
-                    msg = "\n sa pressed!!!";
+                    //msg = "\n sa pressed!!!";
                 }
             }
         }
-        GUILayout.Label("MSG:" + msg);
+        //GUILayout.Label("MSG:" + msg);
     }
 
     #region VR INPUT

@@ -83,7 +83,7 @@ public class vp_SimpleHUD : MonoBehaviour
 	/// this draws a primitive HUD and also renders the current
 	/// message, fading out in the middle of the screen
 	/// </summary>
-	protected virtual void OnGUI()
+	protected virtual void OnGUI_kill()
 	{
 
 		if (!ShowHUD)

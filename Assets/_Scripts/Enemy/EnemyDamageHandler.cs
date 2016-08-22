@@ -170,10 +170,10 @@ public class EnemyDamageHandler : vp_DamageHandler
     }
 
     //todo kill测试代码
-    private void OnGUI()
-    {
-        GUILayout.Label("enemy hp:"+m_CurrentHealth);
-    }
+    //private void OnGUI()
+    //{
+    //    GUILayout.Label("enemy hp:"+m_CurrentHealth);
+    //}
 
 
 }
