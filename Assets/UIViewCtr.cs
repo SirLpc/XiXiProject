@@ -17,6 +17,8 @@ public class UIViewCtr : MonoBehaviour
     [SerializeField]
     private Image _maskImg;
 
+    [SerializeField] private GameObject _iconImg;
+
 	public InputUIView InputUIView;
 
 	private void Awake()
@@ -108,5 +110,10 @@ public class UIViewCtr : MonoBehaviour
         _maskImg.gameObject.SetActive(false);
         if (after != null)
             after.Invoke();
+    }
+
+    public void ShowIcon(bool show = true)
+    {
+        _iconImg.SetActive(show);
     }
 }

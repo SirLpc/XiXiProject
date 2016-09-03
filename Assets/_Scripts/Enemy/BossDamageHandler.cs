@@ -69,5 +69,22 @@ public class BossDamageHandler : vp_DamageHandler
 
         _bossCtr.Anim.SetTrigger(Consts.AniBossTriggerDie);
         _bossCtr.DisActiveBoss();
+        StartCoroutine(CoFadeOut());
+    }
+
+    private IEnumerator CoFadeOut()
+    {
+        yield return new WaitForSeconds(5f);
+        UIViewCtr.Instance.FadeOut(OnFadeOutComplete);
+    }
+
+    private void OnFadeOutComplete()
+    {
+        UIViewCtr.Instance.ShowIcon();
+        var enemies = GameObject.FindGameObjectsWithTag(Consts.EnemyTag);
+        foreach (var enemy in enemies)
+        {
+            enemy.SetActive(false);
+        }
     }
 }

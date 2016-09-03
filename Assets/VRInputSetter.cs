@@ -115,7 +115,7 @@ public class VRInputSetter : MonoBehaviour
                     _curKeyCodeString = _curKey.ToString();
             }
         }
-        GUILayout.Label("MSG:" + _curKeyCodeString);
+        //GUILayout.Label("MSG:" + _curKeyCodeString);
     }
 
     private bool IsKeyValid()
