@@ -6,10 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class ValidateCheck : MonoBehaviour
 {
+    public bool CheckOn;
+
     private const string path = "http://115.28.87.227/UnityFiles/zfhdvrlock.txt";
 
     private void Start()
     {
+        if(!CheckOn)
+        {
+            SceneManager.LoadScene(1);
+            return;
+        }
+
         StartCoroutine(CoLoadValidate());
     }
 

@@ -3,13 +3,12 @@ using System.Collections;
 
 public class SignalCtr : MonoBehaviour
 {
-    [SerializeField]
-    private Transform _pointer;
+
     [SerializeField]
     private GameObject _bossDoor;
 
     [SerializeField]
-    private StatePatternEnemy[] _enemyGroup1, _enemyGroup2, _enemyGroup3;
+    private StatePatternEnemy[] _enemyGroup1, _enemyGroup2;
 
     private void Awake()
     {
@@ -22,12 +21,7 @@ public class SignalCtr : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
 
-            if (!IsGroupAlive(_enemyGroup2))
-            {
-                _pointer.rotation = Quaternion.Euler(270, 0, 0);
-            }
-
-            if (!IsGroupAlive(_enemyGroup1) && !IsGroupAlive(_enemyGroup2) && !IsGroupAlive(_enemyGroup3))
+            if (!IsGroupAlive(_enemyGroup1) && !IsGroupAlive(_enemyGroup2))
                 _bossDoor.SetActive(true);
         }
     }
