@@ -1,0 +1,1096 @@
+fileFormatVersion: 2
+guid: 1463ee062ee08c541bc31948beb3d064
+timeCreated: 1474595778
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ArmLft
+    100002: ArmRT
+    100004: Dummy01
+    100006: Dummy03
+    100008: Dummy10
+    100010: ForeArmLft
+    100012: ForeArmRt
+    100014: HandLft
+    100016: HandRt
+    100018: Head
+    100020: HitTestFuzzy01
+    100022: HitTestFuzzy02
+    100024: HitTestFuzzy03
+    100026: Hydralisk
+    100028: //RootNode
+    100030: Jaw
+    100032: Karapis_Bone01
+    100034: Karapis_Bone02
+    100036: Neck01
+    100038: Neck02
+    100040: Ref_Center
+    100042: Ref_Head
+    100044: Ref_Origin
+    100046: Ref_Target
+    100048: Ref_Weapon
+    100050: Ref_Weapon Left
+    100052: Ref_Weapon Right
+    100054: Root
+    100056: ShoulderLft
+    100058: ShoulderRt
+    100060: Spikes
+    100062: SpineUp01
+    100064: SpineUp02
+    100066: SpineUp03
+    100068: Tail01
+    100070: Tail02
+    100072: Tail03
+    100074: Tail04
+    100076: Tail05
+    100078: Tail06
+    100080: TailTIP
+    100082: Unit_Zerg_Hydralisk_Crest
+    100084: Unit_Zerg_Hydralisk_Jaw_03
+    400000: ArmLft
+    400002: ArmRT
+    400004: Dummy01
+    400006: Dummy03
+    400008: Dummy10
+    400010: ForeArmLft
+    400012: ForeArmRt
+    400014: HandLft
+    400016: HandRt
+    400018: Head
+    400020: HitTestFuzzy01
+    400022: HitTestFuzzy02
+    400024: HitTestFuzzy03
+    400026: Hydralisk
+    400028: //RootNode
+    400030: Jaw
+    400032: Karapis_Bone01
+    400034: Karapis_Bone02
+    400036: Neck01
+    400038: Neck02
+    400040: Ref_Center
+    400042: Ref_Head
+    400044: Ref_Origin
+    400046: Ref_Target
+    400048: Ref_Weapon
+    400050: Ref_Weapon Left
+    400052: Ref_Weapon Right
+    400054: Root
+    400056: ShoulderLft
+    400058: ShoulderRt
+    400060: Spikes
+    400062: SpineUp01
+    400064: SpineUp02
+    400066: SpineUp03
+    400068: Tail01
+    400070: Tail02
+    400072: Tail03
+    400074: Tail04
+    400076: Tail05
+    400078: Tail06
+    400080: TailTIP
+    400082: Unit_Zerg_Hydralisk_Crest
+    400084: Unit_Zerg_Hydralisk_Jaw_03
+    4300000: Hydralisk
+    7400000: walk
+    7400002: idle
+    7400004: die
+    7400006: show
+    7400008: atk01
+    7400010: atk02
+    7400012: hurt1
+    7400014: hurt0
+    9500000: //RootNode
+    13700000: Hydralisk
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 53
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 164
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: die
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 253
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: show
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 302
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: atk01
+      takeName: Take 001
+      firstFrame: 315
+      lastFrame: 346
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: atk02
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 407
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: hurt1
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 530
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: hurt0
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 578
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy10
+        weight: 1
+      - path: Dummy10/Dummy03
+        weight: 1
+      - path: Dummy10/Dummy03/Ref_Center
+        weight: 1
+      - path: Hydralisk
+        weight: 1
+      - path: Ref_Origin
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Dummy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Jaw
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Head/Unit_Zerg_Hydralisk_Jaw_03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/HitTestFuzzy01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone01
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Karapis_Bone02
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Head
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Left
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Ref_Weapon
+          Right
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Spikes
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/Neck01/Neck02/Unit_Zerg_Hydralisk_Crest
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderLft/ArmLft/ForeArmLft/HandLft/HitTestFuzzy03
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt
+        weight: 1
+      - path: Root/Dummy01/SpineUp01/SpineUp02/SpineUp03/ShoulderRt/ArmRT/ForeArmRt/HandRt/HitTestFuzzy02
+        weight: 1
+      - path: Root/Tail01
+        weight: 1
+      - path: Root/Tail01/Ref_Target
+        weight: 1
+      - path: Root/Tail01/Tail02
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06
+        weight: 1
+      - path: Root/Tail01/Tail02/Tail03/Tail04/Tail05/Tail06/TailTIP
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
