@@ -112,11 +112,17 @@ ModelImporter:
     resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
+    animationImportErrors: '
+
+      Imported file ''hydralisk01_anim'' conversion failed: Required human bone ''LeftUpperLeg''
+      not found
+
+
+'
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -242,7 +248,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: Take 001
-      firstFrame: 53
+      firstFrame: 80
       lastFrame: 164
       wrapMode: 0
       orientationOffsetY: 0
@@ -358,7 +364,7 @@ ModelImporter:
     - serializedVersion: 16
       name: die
       takeName: Take 001
-      firstFrame: 53
+      firstFrame: 190
       lastFrame: 253
       wrapMode: 0
       orientationOffsetY: 0
@@ -474,7 +480,7 @@ ModelImporter:
     - serializedVersion: 16
       name: show
       takeName: Take 001
-      firstFrame: 53
+      firstFrame: 270
       lastFrame: 302
       wrapMode: 0
       orientationOffsetY: 0
@@ -706,7 +712,7 @@ ModelImporter:
     - serializedVersion: 16
       name: atk02
       takeName: Take 001
-      firstFrame: 53
+      firstFrame: 360
       lastFrame: 407
       wrapMode: 0
       orientationOffsetY: 0
@@ -822,7 +828,7 @@ ModelImporter:
     - serializedVersion: 16
       name: hurt1
       takeName: Take 001
-      firstFrame: 53
+      firstFrame: 430
       lastFrame: 530
       wrapMode: 0
       orientationOffsetY: 0
@@ -938,7 +944,7 @@ ModelImporter:
     - serializedVersion: 16
       name: hurt0
       takeName: Take 001
-      firstFrame: 53
+      firstFrame: 560
       lastFrame: 578
       wrapMode: 0
       orientationOffsetY: 0
