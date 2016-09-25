@@ -3,23 +3,28 @@ using System.Collections;
 
 public class ZhiZhuCtr : MonoBehaviour
 {
-    private float _atk = 1f;
-    private float _atkGap = 5f;
+    protected float _atk = 1f;
+    protected float _atkGap = 5f;
 
-    private NavMeshAgent _agent;
-    private Transform _playerTransform;
-    private Transform _myTransform;
-    private Animator _anim;
+    protected NavMeshAgent _agent;
+    protected Transform _playerTransform;
+    protected Transform _myTransform;
+    protected Animator _anim;
     public Animator Anim { get { return _anim; } }
 
-    private float _lastAtkTime;
-    private bool _isInAttack;
+    protected float _lastAtkTime;
+    protected bool _isInAttack;
+    protected bool _isInSAHurt;
+    protected bool _isInDefenseHurt;
+    protected bool _isAlive;
+    public bool IsAlive { get { return _isAlive; } }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _anim = GetComponent<Animator>();
         _myTransform = transform;
+        _isAlive = true;
     }
 
 	private void Start ()
@@ -29,6 +34,8 @@ public class ZhiZhuCtr : MonoBehaviour
 
 	void Update ()
     {
+        if (_isInSAHurt || _isInDefenseHurt || !_isAlive) return;
+
         if (!IsInAtkScope())
             Chase();
         else
@@ -70,10 +77,12 @@ public class ZhiZhuCtr : MonoBehaviour
         _myTransform.LookAt(dir);
     }
 
-    private void TryAtk()
+    protected virtual void TryAtk()
     {
         if(!_isInAttack)
+        {
             _anim.SetBool(Consts.AniIsInAttack, true);
+        }
         _isInAttack = true;
 
         if (Time.time < _lastAtkTime + _atkGap)
@@ -87,7 +96,7 @@ public class ZhiZhuCtr : MonoBehaviour
     }
 
     //called from animator attack
-    public void OnAttackComplete()
+    public virtual void OnAttackComplete()
     {
         PlayerController.Instance.DamangeHandler.Damage(_atk);
     }

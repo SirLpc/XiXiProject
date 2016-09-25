@@ -17,6 +17,8 @@ public class Consts
     public const string AniTriggerSAHurt = "triggerSAHurt";
     public const string AniIsInAttack = "isInAttack";
 
+    public const string AniShow = "triggerShow";
+
     public const int AniDieDuration = 2;
     public const float AniDefenseHurtDuration = .7f;
 

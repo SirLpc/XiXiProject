@@ -1,94 +1,97 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InsectCtr : MonoBehaviour
+public class InsectCtr : ZhiZhuCtr
 {
-    private float _atk = 1f;
-    private float _atkGap = 5f;
+    private EnemySpawner _spawner;
+    private float _defenseBackSpeed = 3f;
 
-    private NavMeshAgent _agent;
-    private Transform _playerTransform;
-    private Transform _myTransform;
-    private Animator _anim;
-    public Animator Anim { get { return _anim; } }
 
-    private float _lastAtkTime;
-    private bool _isInAttack;
-
-    private void Awake()
+    protected override void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _anim = GetComponent<Animator>();
-        _myTransform = transform;
+        base.Awake();
+        _spawner = GetComponentInParent<EnemySpawner>();
+        _spawner.PlayerIn.AddListener(ActiveInsect);
+        gameObject.SetActive(false);
     }
 
-	private void Start ()
+    private void ActiveInsect()
     {
-        _playerTransform = PlayerController.Instance.transform;
-	}
+        gameObject.SetActive(true);
+    }
 
-	void Update ()
+    protected override void TryAtk()
     {
-        if (!IsInAtkScope())
-            Chase();
-        else
+        if (!_isInAttack)
         {
-            TryAtk();
-            Look();
-        }
-	}
-
-    private void OnDisable()
-    {
-        if (!_agent.isActiveAndEnabled)
-            return;
-        _agent.Stop();
-        _agent.enabled = false;
-    }
-
-    private bool IsInAtkScope()
-    {
-        return Vector3.Distance(_playerTransform.position, _myTransform.position) <= _agent.stoppingDistance + .5f;
-    }
-
-    private void Chase()
-    {
-        if(_isInAttack)
-            _anim.SetBool(Consts.AniIsInAttack, false);
-        _isInAttack = false;
-
-        _agent.destination = _playerTransform.position;
-        _agent.Resume();
-    }
-
-    private void Look()
-    {
-        Vector3 dir = new Vector3(
-            _playerTransform.position.x,
-            _myTransform.position.y,
-            _playerTransform.position.z);
-        _myTransform.LookAt(dir);
-    }
-
-    private void TryAtk()
-    {
-        if(!_isInAttack)
             _anim.SetBool(Consts.AniIsInAttack, true);
+        }
         _isInAttack = true;
 
         if (Time.time < _lastAtkTime + _atkGap)
             return;
         _lastAtkTime = Time.time;
 
-        if(_agent.isActiveAndEnabled)
+        if (_agent.isActiveAndEnabled)
             _agent.Stop();
 
-        _anim.SetTrigger(Consts.AniTriggerAttack);
+        var ran = Random.Range(0, 3);
+        _anim.SetTrigger(ran == 0 ? Consts.AniTriggerAttack2 : Consts.AniTriggerAttack);
     }
 
-    //called from animator attack
-    public void OnAttackComplete()
+    public void ToSAHurt()
     {
-        PlayerController.Instance.DamangeHandler.Damage(_atk);
+        _isInSAHurt = true;
+        _anim.SetTrigger(Consts.AniTriggerSAHurt);
+        StartCoroutine(CoEndSAHurt());
     }
+
+    private IEnumerator CoEndSAHurt()
+    {
+        yield return new WaitForSeconds(3f);
+        _isInSAHurt = false;
+    }
+
+    public void DefenseDamage()
+    {
+        _isInDefenseHurt = true;
+        _anim.SetTrigger(Consts.AniTriggerDefenseHurt);
+        StartCoroutine(CoBeenDefenseBack());
+    }
+
+    private IEnumerator CoBeenDefenseBack()
+    {
+        var t = 0f;
+        while (t < Consts.AniDefenseHurtDuration)
+        {
+            t += Time.deltaTime;
+            yield return null;
+            transform.Translate(Vector3.back * Time.deltaTime * _defenseBackSpeed);
+        }
+
+        _isInDefenseHurt = false;
+    }
+
+    public override void OnAttackComplete()
+    {
+        if (!PlayerController.Instance.IsInDefense)
+        {
+            base.OnAttackComplete();
+        }
+        else
+        {
+            DefenseDamage();
+        }
+    }
+
+    public void SetDie()
+    {
+        _isAlive = false;
+        _agent.Stop();
+        _agent.enabled = false;
+        _anim.SetTrigger(Consts.AniTriggerDie);
+
+        Destroy(_spawner.gameObject, 5f);
+    }
+
 }
